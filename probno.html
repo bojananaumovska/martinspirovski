@@ -3,85 +3,89 @@
 <head>
     <meta charset="UTF-8" />
     <title>Martin Spirovski Fitness</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700;900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html, body {
-            height: 100%;
-            background-color: #fffafa;
-            font-family: 'Roboto', sans-serif;
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
             font-weight: 300;
             font-size: 16px;
             line-height: 1.5;
-            color: #222;
-            overflow-x: hidden;
+            color: #ddd;
+            background: #1e1e1e; /* темно сива - скоро црна */
+            min-height: 100vh;
         }
-
         .top-bar {
-            background-color: #111;
-            color: #bbb;
-            padding: 6px 12px;
+            background-color: #2c2c2c; /* потемна, мат боја */
+            color: #ccc; /* светло сиво */
+            padding: 8px 12px;
             font-size: 0.75rem;
             text-align: center;
-            letter-spacing: 0.03em;
-            border-bottom: 1px solid #555;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+            border-bottom: 1px solid #444;
         }
-
         .top-bar .icon {
-            height: 20px;
-            margin-right: 5px;
+            height: 16px;
             vertical-align: middle;
-            filter: brightness(100%) contrast(100%);
+            margin-right: 6px;
+            filter: brightness(80%);
         }
-
         .navbar {
-            background-color: #111;
-            color: #fff;
+            background-color: #292929; /* темна мат боја */
+            color: #ccc;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
+            padding: 14px 25px;
             flex-wrap: wrap;
-            border-bottom: 1px solid #555;
+            font-weight: 300;
+            position: relative;
+            border-bottom: 2px solid #4b0000; /* темно црвено */
         }
-
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             white-space: nowrap;
         }
-
         .logo img {
             height: 40px;
+            width: auto;
+            display: block;
+            filter: none; /* без светлечки ефекти */
         }
-
-        .desktop-text {
+        .logo span {
+            font-size: 1.4rem;
             font-weight: 300;
-            font-size: 1.3rem;
-            letter-spacing: 0.05em;
-            color: #fff;
+            letter-spacing: 0.07em;
+            color: #cc6666; /* потемна црвена боја, мат */
+            user-select: none;
         }
-
         .nav-links {
             display: flex;
-            gap: 14px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
         .nav-links a {
-            color: #eee;
+            color: #aaa; /* светло сиво */
             text-decoration: none;
-            font-size: 0.9rem;
-            padding: 6px 10px;
+            font-size: 1rem;
+            padding: 8px 14px;
             transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            border-radius: 6px;
         }
-
         .nav-links a:hover {
-            color: #e10600;
+            color: #b35454; /* мат црвено */
+            background-color: transparent; /* без светлечки ефект */
+            text-decoration: underline;
         }
-
+        /* Хамбургер мени */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -89,181 +93,128 @@
             width: 24px;
             height: 18px;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
-
         .hamburger div {
             height: 3px;
-            background-color: #eee;
+            background: #b35454; /* мат црвено */
             border-radius: 2px;
+            transition: all 0.4s ease;
+            transform-origin: center;
+            box-shadow: none; /* без сјај */
         }
-
-        .background-wrapper {
-            display: flex;
-            width: 100vw;
-            height: 600px;
-            position: relative;
+        .hamburger:hover div {
+            filter: brightness(0.85); /* помрачи при hover */
         }
-
-        .bac-part {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
-
-        .bac-part.left  { background-image: url('images/bac3.JPG'); }
-        .bac-part.center{ background-image: url('images/bac2.JPG'); }
-        .bac-part.right { background-image: url('images/bac1.JPG'); }
-
-        .glass-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 15, 15, 0.4);
-            z-index: 5;
-        }
-
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 25%;
-            transform: translate(-50%, -50%);
-            color: white;
-            max-width: 500px;
-            z-index: 10;
-            text-shadow: 0 0 10px rgba(0,0,0,0.7);
-            animation: fadeInText 1.5s ease forwards;
+        .hamburger.active div:nth-child(2) {
             opacity: 0;
-            animation-delay: 0.5s;
-            text-align: left;
+            transform: translateX(-20px);
+        }
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        .hero-text h2 {
-            color: #e10600;
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            font-weight: 900;
-        }
-
-        .hero-text h1 span { color: #e10600; }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #eee;
-        }
-
-        .cta-btn {
-            background-color: #e10600;
-            color: white;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-
-        .cta-btn:hover {
-            background-color: #b00400;
-        }
-
-        .satisfied-count {
-            margin-top: 25px;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #e10600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .wave-mask {
-            position: absolute;
-            bottom: -30px;
-            left: 0;
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            z-index: 6;
-        }
-
-        .wave-mask svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        section.content {
-            background-color: #fffafa;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        section.content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #222;
-        }
-
-        section.content p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        @keyframes fadeInText {
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .background-wrapper {
+        /* Мобилно мени */
+        @media (max-width: 480px) {
+            .navbar {
+                flex-wrap: nowrap;
+                padding: 12px 15px;
+            }
+            .nav-links {
+                position: absolute;
+                top: 56px;
+                right: 0;
+                background: #3c1c1c; /* потемна црвена мат боја */
                 flex-direction: column;
+                width: 160px;
+                display: none;
+                border-radius: 8px;
+                z-index: 1000;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+            .nav-links.active {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                white-space: nowrap;
+                color: #ddd;
+                font-weight: 400;
+                transition: color 0.3s ease;
+                border-radius: 6px;
+            }
+            .nav-links a:hover {
+                color: #e08c8c;
+                background-color: transparent;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .top-bar {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+        @media (max-width: 360px) {
+            .logo img {
+                height: 30px;
+            }
+            .logo span {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo span {
+                display: none;
+            }
+        }
+
+        /* Слики за почетна */
+        .image-row {
+            display: flex;
+            gap: 0; /* нема празнина */
+            width: 100vw;
+            overflow: hidden;
+        }
+        .image-row img {
+            width: 33.3333%;
+            height: 300px;
+            object-fit: cover; /* ќе се одржи соодносот и ќе пополни */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: brightness(0.85); /* малку потемни слики */
+            border-right: 1px solid #3c1c1c; /* тенка разделба */
+        }
+        .image-row img:last-child {
+            border-right: none;
+        }
+        .image-row img:hover {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+        @media (max-width: 600px) {
+            .image-row {
+                flex-direction: row;
+            }
+            .image-row img {
+                width: 100%;
+                display: none;
+            }
+            .image-row img:nth-child(2) {
+                display: block;
                 height: auto;
             }
-
-            .hero-text {
-                position: static;
-                padding: 30px 20px;
-                transform: none;
-                text-align: center;
-                opacity: 1;
-                animation: none;
-            }
-
-            .hero-text h1 { font-size: 2rem; }
-            .satisfied-count { font-size: 1.2rem; }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #111;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                padding: 10px 0;
-                z-index: 100;
-            }
-
-            .nav-links.active { display: flex; }
-
-            .nav-links a {
-                padding: 10px;
-                text-align: center;
-            }
-
-            .hamburger { display: flex; }
         }
     </style>
 </head>
@@ -279,11 +230,13 @@
 <nav class="navbar">
     <div class="logo">
         <img src="images/logo.png" alt="Martin Spirovski Logo" />
-        <span class="desktop-text">Мартин Спировски</span>
+        <span>Martin Spirovski</span>
     </div>
 
-    <div class="hamburger" id="hamburger">
-        <div></div><div></div><div></div>
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 
     <div class="nav-links" id="nav-links">
@@ -295,38 +248,26 @@
     </div>
 </nav>
 
-<div class="background-wrapper">
-    <div class="hero-text">
-        <h2>ДОБРЕДОЈДЕ ВО FITZONE</h2>
-        <h1>СПРЕМЕН СИ ЗА <br><span>ТРЕНИРАЊЕ?</span></h1>
-        <p>Персонализирани тренинзи и целосна посветеност. Промени го телото, засекогаш.</p>
-        <a href="#" class="cta-btn">ЗАКАЖИ ТРЕНИНГ</a>
-        <div class="satisfied-count">2k+ ЗАДОВОЛНИ КЛИЕНТИ</div>
-    </div>
-
-    <div class="bac-part left"></div>
-    <div class="bac-part center"></div>
-    <div class="bac-part right"></div>
-
-    <div class="glass-overlay"></div>
-
-    <div class="wave-mask" aria-hidden="true">
-        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
-            <path fill="#fffafa" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
-        </svg>
-    </div>
+<div class="image-row">
+    <img src="images/bac1.JPG" alt="Слика 1" />
+    <img src="images/bac2.JPG" alt="Слика 2" />
+    <img src="images/bac3.JPG" alt="Слика 3" />
 </div>
-
-<section class="content">
-    <h1>Добредојдовте</h1>
-    <p>Оваа страница е дизајнирана за мотивација, трансформација и здрав животен стил.</p>
-</section>
 
 <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
+
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
+    hamburger.addEventListener('keypress', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            hamburger.click();
+        }
     });
 </script>
 

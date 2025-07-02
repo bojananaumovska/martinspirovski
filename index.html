@@ -17,7 +17,7 @@
       font-size: 16px;
       line-height: 1.5;
       color: #222;
-      background-color: #fff;
+      background-color: #f9f9f9;
     }
     .top-bar {
       background-color: #111111;
@@ -186,6 +186,93 @@
         display: none;
       }
     }
+    .site-footer {
+      background: linear-gradient(to right, #4b0000, #8b0000, #b30000);
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      margin-top: 40px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .site-footer .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .floating-icon {
+      position: absolute;
+      filter: grayscale(100%) brightness(70%);
+      opacity: 0.6;
+      pointer-events: none;
+      transition: filter 0.3s ease;
+    }
+
+    .floating-icon:hover {
+      filter: grayscale(0%) brightness(100%);
+      opacity: 1;
+    }
+
+    /* Desktop positions and sizes */
+    .floating-icon.icon1 {
+      top: 120px;
+      left: 11%;
+      width: 50px;
+    }
+    .floating-icon.icon2 {
+      top: 130px;
+      right: 12%;
+      width: 50px;
+    }
+    .floating-icon.icon3 {
+      bottom: 120px;
+      left: 35%;
+      width: 45px;
+    }
+    .floating-icon.icon4 {
+      bottom: 100px;
+      right: 9%;
+      width: 40px;
+    }
+    .floating-icon.icon5 {
+      bottom: 30px;
+      right: 90%;
+      width: 40px;
+    }
+    @media (max-width: 480px) {
+      .floating-icon {
+        position: absolute !important; /* keep absolute for scattering */
+        width: 40px !important;        /* smaller icons */
+        opacity: 0.7;
+        filter: grayscale(80%) brightness(80%);
+        pointer-events: none;
+        transition: filter 0.3s ease;
+      }
+      /* Individually reposition each icon with inline styles or add classes */
+      /* Example assuming you can add classes: */
+      .floating-icon.icon1 {
+        top: 190px;
+        left: 12%;
+      }
+      .floating-icon.icon2 {
+        top: 210px;
+        right: 10%;
+      }
+      .floating-icon.icon3 {
+        bottom: 460px;
+        left: 10%;
+      }
+      .floating-icon.icon4 {
+        bottom: 180px;
+        right: 10%;
+      }
+      .floating-icon.icon5 {
+        bottom: 100px;
+        right: 80%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -218,6 +305,45 @@
   </div>
 </nav>
 
+<section style="position: relative; text-align:center; padding: 50px 20px; background-color: #f9f9f9;">
+  <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+
+    <div style="max-width: 280px;">
+      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ddd;">
+        <img src="images/circle1.jpeg" alt="Gym Movement" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Посветеност</h3>
+      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+    </div>
+
+    <div style="max-width: 280px;">
+      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #e10600;">
+        <img src="images/circle2.jpeg" alt="Fitness Practice" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Одговорност</h3>
+      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit. </p>
+    </div>
+
+    <div style="max-width: 280px;">
+      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ccc;">
+        <img src="images/circle3.jpeg" alt="Achievement" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Тимска соработка</h3>
+      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+
+  </div>
+
+  <img src="images/dumbbells.png" alt="Icon 1" class="floating-icon icon1" />
+  <img src="images/health.png" alt="Icon 2" class="floating-icon icon2" />
+  <img src="images/nutrition.png" alt="Icon 3" class="floating-icon icon3" />
+  <img src="images/plan.png" alt="Icon 4" class="floating-icon icon4" />
+  <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
+
+</section>
+
+
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
@@ -236,4 +362,11 @@
 </script>
 
 </body>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Martin Spirovski Fitness. All rights reserved.</p>
+  </div>
+</footer>
+
 </html>
