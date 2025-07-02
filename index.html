@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Martin Spirovski Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #222;
+      background-color: #fff;
+    }
+    .top-bar {
+      background-color: #111111;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      text-align: center;
+      letter-spacing: 0.03em;
+      font-weight: 300;
+      border-bottom: 1px solid #555;
+    }
+    .top-bar .icon {
+      height: 14px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 4px;
+      filter: brightness(100%) contrast(100%);
+    }
+    .navbar {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+      font-weight: 300;
+      position: relative;
+      border-bottom: 2px solid;
+      border-image: linear-gradient(45deg, #e10600, #b30000) 1;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      white-space: nowrap;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .logo span {
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .nav-links a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      transition: color 0.3s ease;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: #e10600;
+      text-decoration: underline;
+    }
+
+    /* Hamburger styles & animation with color effects */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 24px;
+      height: 18px;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+    .hamburger div {
+      height: 3px;
+      background: linear-gradient(45deg, #e10600, #b30000);
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: center;
+      box-shadow: none;
+    }
+    .hamburger:hover div {
+      filter: brightness(1.2);
+    }
+    /* Active hamburger transforms to X with glow */
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      box-shadow: 0 0 8px #e10600cc;
+    }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+      box-shadow: 0 0 8px #b30000cc;
+    }
+
+    /* MOBILE dropdown menu styling */
+    @media (max-width: 480px) {
+      .navbar {
+        flex-wrap: nowrap;
+        padding: 12px 15px;
+      }
+      .nav-links {
+        position: absolute;
+        top: 56px;
+        right: 0;
+        background: linear-gradient(135deg, #8b0000, #b30000);
+        flex-direction: column;
+        width: 160px;
+        display: none;
+        box-shadow: 0 8px 16px rgba(179, 0, 0, 0.7);
+        border-radius: 8px;
+        z-index: 1000;
+
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .nav-links a {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        color: #fff;
+        font-weight: 400;
+        transition: color 0.3s ease, transform 0.25s ease;
+        border-radius: 6px;
+      }
+      .nav-links a:hover {
+        color: #ffcccc;
+        background-color: rgba(255 255 255 / 0.15);
+        transform: scale(1.05);
+      }
+      .logo {
+        font-size: 1.1rem;
+      }
+      .top-bar {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    @media (max-width: 360px) {
+      .logo img {
+        height: 30px;
+      }
+      .logo span {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <img src="images/email.png" alt="Email Icon" class="icon" />
+  s.martin@live.com &nbsp;&nbsp;
+  <img src="images/location.png" alt="Location Icon" class="icon" />
+  Mateja Mateski 22, Skopje 1000
+</div>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="images/logo.png" alt="Martin Spirovski Logo" />
+    <span>Martin Spirovski</span>
+  </div>
+
+  <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="nav-links" id="nav-links">
+    <a href="#">Почетна</a>
+    <a href="#">За мене</a>
+    <a href="#">Трансформации</a>
+    <a href="#">Понуди</a>
+    <a href="#">Контакт</a>
+  </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+
+  hamburger.addEventListener('keypress', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+</script>
+
+</body>
+</html>

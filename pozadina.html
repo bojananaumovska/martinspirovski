@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Martin Spirovski Fitness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #fffafa; /* Белата боја што ќе се гледа при скрол */
+            font-family: 'Roboto', Arial, sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #111;
+            color: #bbb;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            text-align: center;
+            letter-spacing: 0.03em;
+            font-weight: 300;
+            border-bottom: 1px solid #555;
+            white-space: nowrap;
+        }
+        .top-bar .icon {
+            height: 20px;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 1px;
+            filter: brightness(100%) contrast(100%);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #111111; /* Црна исто како top bar */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            flex-wrap: wrap;
+            font-weight: 300;
+            position: relative;
+            border-bottom: 1px solid #555;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .desktop-text {
+            font-weight: 300;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+            color: #fff;
+            white-space: nowrap;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .nav-links a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #e10600;
+            text-decoration: underline;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 20px;
+            height: 15px;
+            justify-content: space-between;
+        }
+
+        .hamburger div {
+            height: 2px;
+            background-color: #eee;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Background Wrapper и делови */
+        .background-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 550px;  /* зголемена висина за повеќе слика */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bac-part {
+            flex: 1;
+            background-size: cover;
+            background-position: center bottom; /* позиционирај пониско за да се гледа долниот дел */
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .bac-part.left {
+            background-image: url('images/bac1.JPG');
+        }
+
+        .bac-part.center {
+            background-image: url('images/bac2.JPG');
+        }
+
+        .bac-part.right {
+            background-image: url('images/bac3.JPG');
+        }
+
+        .glass-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 15, 15, 0.40);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Текст во левиот дел од позадината */
+        .left-text {
+            position: absolute;
+            top: 20%;
+            left: 20px;
+            color: #eee;
+            max-width: 250px;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInText 1.5s ease forwards;
+            animation-delay: 0.5s;
+            user-select: none;
+            text-shadow: 0 0 6px rgba(0,0,0,0.7);
+        }
+
+        .left-text h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .left-text p {
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .satisfied-text {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            color: #e10600;
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            user-select: none;
+            text-shadow: 0 0 6px rgba(0,0,0,0.7);
+            opacity: 0;
+            animation: fadeInText 2s ease forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .wave-mask {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        .wave-mask svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Содржина веднаш под позадината */
+        section.content {
+            background-color: #fffafa;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        section.content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        section.content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .background-wrapper {
+                flex-direction: column;
+                height: 350px;
+            }
+            .bac-part {
+                height: 33.33%;
+                flex: none;
+            }
+            .left-text {
+                position: static;
+                max-width: 100%;
+                margin: 20px auto 0;
+                text-align: center;
+                animation-delay: 0;
+                opacity: 1;
+            }
+            .satisfied-text {
+                position: static;
+                font-size: 1.5rem;
+                margin: 20px auto 0;
+                opacity: 1;
+                animation-delay: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .desktop-text {
+                display: none;
+            }
+
+            .navbar {
+                flex-wrap: nowrap;
+                padding: 12px 15px;
+                justify-content: space-between;
+            }
+
+            .logo {
+                gap: 0;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 56px;
+                right: 0;
+                background-color: #000;
+                flex-direction: column;
+                width: 150px;
+                display: none;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+                border-radius: 4px;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .top-bar {
+                font-size: 0.55rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo img {
+                height: 30px;
+            }
+
+            .desktop-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .desktop-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <img src="images/email.png" alt="Email Icon" class="icon" />
+    s.martin@live.com &nbsp;&nbsp;
+    <img src="images/location.png" alt="Location Icon" class="icon" />
+    Mateja Mateski 22, Skopje 1000
+</div>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="images/logo.png" alt="Martin Spirovski Logo" />
+        <span class="desktop-text">Мартин Спировски</span>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="nav-links" id="nav-links">
+        <a href="#">Почетна</a>
+        <a href="#">За мене</a>
+        <a href="#">Трансформации</a>
+        <a href="#">Понуди</a>
+        <a href="#">Контакт</a>
+    </div>
+</nav>
+
+<div class="background-wrapper">
+    <div class="bac-part left">
+        <div class="left-text">
+            <h2>Добредојде кај Мартин Спировски</h2>
+            <p>Туторијалите и тренинзите што ги нудиме се дизајнирани за твојот успех и здравје.</p>
+        </div>
+        <div class="satisfied-text">ЗАДОВОЛНИ КОРИСНИЦИ</div>
+    </div>
+    <div class="bac-part center"></div>
+    <div class="bac-part right"></div>
+
+    <div class="glass-overlay"></div>
+
+    <div class="wave-mask" aria-hidden="true">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fffafa" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+        </svg>
+    </div>
+</div>
+
+<section class="content">
+    <h1>Добредојдовте</h1>
+    <p>Сликите се повисоки, бранот ист како порано, но почнува пониско за повеќе да се гледаат сликите.</p>
+</section>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Martin Spirovski Fitness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700;900&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            background-color: #fffafa;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background-color: #111;
+            color: #bbb;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            text-align: center;
+            letter-spacing: 0.03em;
+            border-bottom: 1px solid #555;
+        }
+
+        .top-bar .icon {
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+            filter: brightness(100%) contrast(100%);
+        }
+
+        .navbar {
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #555;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .desktop-text {
+            font-weight: 300;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .nav-links a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e10600;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 24px;
+            height: 18px;
+            justify-content: space-between;
+        }
+
+        .hamburger div {
+            height: 3px;
+            background-color: #eee;
+            border-radius: 2px;
+        }
+
+        .background-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 600px;
+            position: relative;
+        }
+
+        .bac-part {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .bac-part.left  { background-image: url('images/bac3.JPG'); }
+        .bac-part.center{ background-image: url('images/bac2.JPG'); }
+        .bac-part.right { background-image: url('images/bac1.JPG'); }
+
+        .glass-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 15, 15, 0.4);
+            z-index: 5;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: white;
+            max-width: 500px;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+            animation: fadeInText 1.5s ease forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+            text-align: left;
+        }
+
+        .hero-text h2 {
+            color: #e10600;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        .hero-text h1 span { color: #e10600; }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #eee;
+        }
+
+        .cta-btn {
+            background-color: #e10600;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background-color: #b00400;
+        }
+
+        .satisfied-count {
+            margin-top: 25px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #e10600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .wave-mask {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            z-index: 6;
+        }
+
+        .wave-mask svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        section.content {
+            background-color: #fffafa;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section.content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        section.content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .background-wrapper {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-text {
+                position: static;
+                padding: 30px 20px;
+                transform: none;
+                text-align: center;
+                opacity: 1;
+                animation: none;
+            }
+
+            .hero-text h1 { font-size: 2rem; }
+            .satisfied-count { font-size: 1.2rem; }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #111;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                z-index: 100;
+            }
+
+            .nav-links.active { display: flex; }
+
+            .nav-links a {
+                padding: 10px;
+                text-align: center;
+            }
+
+            .hamburger { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <img src="images/email.png" alt="Email Icon" class="icon" />
+    s.martin@live.com &nbsp;&nbsp;
+    <img src="images/location.png" alt="Location Icon" class="icon" />
+    Mateja Mateski 22, Skopje 1000
+</div>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="images/logo.png" alt="Martin Spirovski Logo" />
+        <span class="desktop-text">Мартин Спировски</span>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
+    </div>
+
+    <div class="nav-links" id="nav-links">
+        <a href="#">Почетна</a>
+        <a href="#">За мене</a>
+        <a href="#">Трансформации</a>
+        <a href="#">Понуди</a>
+        <a href="#">Контакт</a>
+    </div>
+</nav>
+
+<div class="background-wrapper">
+    <div class="hero-text">
+        <h2>ДОБРЕДОЈДЕ ВО FITZONE</h2>
+        <h1>СПРЕМЕН СИ ЗА <br><span>ТРЕНИРАЊЕ?</span></h1>
+        <p>Персонализирани тренинзи и целосна посветеност. Промени го телото, засекогаш.</p>
+        <a href="#" class="cta-btn">ЗАКАЖИ ТРЕНИНГ</a>
+        <div class="satisfied-count">2k+ ЗАДОВОЛНИ КЛИЕНТИ</div>
+    </div>
+
+    <div class="bac-part left"></div>
+    <div class="bac-part center"></div>
+    <div class="bac-part right"></div>
+
+    <div class="glass-overlay"></div>
+
+    <div class="wave-mask" aria-hidden="true">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+            <path fill="#fffafa" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+        </svg>
+    </div>
+</div>
+
+<section class="content">
+    <h1>Добредојдовте</h1>
+    <p>Оваа страница е дизајнирана за мотивација, трансформација и здрав животен стил.</p>
+</section>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
