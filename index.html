@@ -5,6 +5,7 @@
   <title>Martin Spirovski Fitness</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Pacifico&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -47,7 +48,7 @@
       font-weight: 300;
       position: relative;
       border-bottom: 2px solid;
-      border-image: linear-gradient(45deg, #e10600, #b30000) 1;
+      border-bottom: 1px solid #555;
     }
     .logo {
       display: flex;
@@ -85,8 +86,6 @@
       color: #e10600;
       text-decoration: underline;
     }
-
-    /* Hamburger styles & animation with color effects */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -107,7 +106,6 @@
     .hamburger:hover div {
       filter: brightness(1.2);
     }
-    /* Active hamburger transforms to X with glow */
     .hamburger.active div:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
       box-shadow: 0 0 8px #e10600cc;
@@ -197,7 +195,6 @@
       margin-top: 40px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
-
     .site-footer .footer-content {
       max-width: 1000px;
       margin: 0 auto;
@@ -209,13 +206,10 @@
       pointer-events: none;
       transition: filter 0.3s ease;
     }
-
     .floating-icon:hover {
       filter: grayscale(0%) brightness(100%);
       opacity: 1;
     }
-
-    /* Desktop positions and sizes */
     .floating-icon.icon1 {
       top: 120px;
       left: 11%;
@@ -243,15 +237,13 @@
     }
     @media (max-width: 480px) {
       .floating-icon {
-        position: absolute !important; /* keep absolute for scattering */
-        width: 40px !important;        /* smaller icons */
+        position: absolute !important;
+        width: 40px !important;
         opacity: 0.7;
         filter: grayscale(80%) brightness(80%);
         pointer-events: none;
         transition: filter 0.3s ease;
       }
-      /* Individually reposition each icon with inline styles or add classes */
-      /* Example assuming you can add classes: */
       .floating-icon.icon1 {
         top: 190px;
         left: 12%;
@@ -273,6 +265,191 @@
         right: 80%;
       }
     }
+    .intro-cortney {
+      background-color: #f9f9f9;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .intro-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      max-width: 1100px;
+      width: 100%;
+      align-items: start;
+      justify-content: center;
+    }
+    .intro-text-block {
+      text-align: left;
+    }
+    .intro-text-block h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+    .intro-name {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #000;
+    }
+    .intro-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+    .intro-description em {
+      font-style: italic;
+    }
+    .why-cortney {
+      background-color: #eaeaea;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .why-cortney h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #000;
+    }
+    .why-cortney p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .intro-container {
+        display: block;
+        text-align: center;
+      }
+
+      .intro-text-block {
+        margin-bottom: 20px;
+      }
+
+      .intro-text-block h2,
+      .intro-name {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .intro-description {
+        text-align: center;
+        padding: 0 10px;
+      }
+    }
+
+
+    .background-wrapper {
+      display: flex;
+      width: 100vw;
+      height: 550px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bac-part {
+      flex: 1;
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .bac-part.left {
+      background-image: url('images/bac1.JPG');
+    }
+
+    .bac-part.center {
+      background-image: url('images/bac2.JPG');
+    }
+
+    .bac-part.right {
+      background-image: url('images/bac3.JPG');
+    }
+
+    .glass-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 15, 15, 0.40);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .wave-mask {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .wave-mask svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .mobile-bg-img {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .bac-part.left,
+      .bac-part.right {
+        display: none;
+      }
+
+      .bac-part.center {
+        display: none; /* hide original background */
+      }
+
+      .mobile-bg-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      .glass-overlay,
+      .wave-mask {
+        z-index: 2;
+      }
+    }
+    .center-cta-button {
+      position: absolute;
+      top: 65%; /* подолу од центарот */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      background: linear-gradient(135deg, #e10600, #b30000);
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .center-cta-button:hover {
+      background: linear-gradient(135deg, #ff1a1a, #cc0000);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
   </style>
 </head>
 <body>
@@ -304,6 +481,45 @@
     <a href="#">Контакт</a>
   </div>
 </nav>
+
+<div class="background-wrapper">
+  <div class="bac-part left"></div>
+  <div class="bac-part center"></div>
+  <div class="bac-part right"></div>
+  <img src="images/bac2.JPG" alt="Full Background Mobile" class="mobile-bg-img" />
+
+  <div class="glass-overlay"></div>
+
+  <div class="wave-mask" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fffafa" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+    </svg>
+  </div>
+</div>
+
+<section class="intro-cortney">
+  <div class="intro-container">
+    <div class="intro-text-block">
+      <h2>Здраво, јас сум</h2>
+      <div class="intro-name">Мартин</div>
+    </div>
+    <div class="intro-description">
+      <p>Имам повеќе од една деценија искуство во спортот и фитнесот. Тренирав фудбал 13 години, од кои 2 години професионално, што ми помогна да развијам дисциплина, посветеноста и тимски дух.</p>
+      <p>Во моментов сум студент на Факултетот за физичка култура, спорт и здравје, четврта година. Паралелно со студиите, веќе четири години активно тренирам во теретана, а последната година работам како сертифициран фитнес тренер.</p>
+      <p>За да го усовршам своето знаење и пристап, завршив два специјализирани курсеви за маркетинг и програмирање на тренинг планови и циклуси. Со тоа креирам ефективни и индивидуализирани програми кои комбинираат спортско искуство и научни методи.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why-cortney">
+  <h2>Зошто мене?</h2>
+  <p>Мојата цел е да ви помогнам да ја постигнете својата најдобра <strong>физичка форма и здравје</strong> преку:</p>
+  <p style="color: #a30606; font-weight: bold;">• персонализирани тренинзи според вашите можности и цели</p>
+  <p style="color: #a30606; font-weight: bold;"> • здрава и балансирана исхрана прилагодена на вашите можности и темпо на живот</p>
+  <p style="color: #a30606; font-weight: bold;"> • постојано советување и водење низ процесот</p>
+  <p>Верувам дека спортот и здравиот начин на живот се клучни за успех на сите полиња во животот и за постигнување на целокупна физичка и психичка благосостојба.</p>
+</section>
+
 
 <section style="position: relative; text-align:center; padding: 50px 20px; background-color: #f9f9f9;">
   <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
