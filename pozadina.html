@@ -5,48 +5,40 @@
     <title>Martin Spirovski Fitness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Pacifico&display=swap" rel="stylesheet" />
     <style>
-        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        html, body {
-            height: 100%;
-            background-color: #fffafa; /* Белата боја што ќе се гледа при скрол */
+        body {
             font-family: 'Roboto', Arial, sans-serif;
             font-weight: 300;
             font-size: 16px;
             line-height: 1.5;
             color: #222;
-            overflow-x: hidden;
+            background-color: #f9f9f9;
         }
-
-        /* Top Bar */
         .top-bar {
-            background-color: #111;
-            color: #bbb;
+            background-color: #111111;
+            color: #fff;
             padding: 6px 12px;
             font-size: 0.75rem;
             text-align: center;
             letter-spacing: 0.03em;
             font-weight: 300;
             border-bottom: 1px solid #555;
-            white-space: nowrap;
         }
         .top-bar .icon {
-            height: 20px;
+            height: 14px;
             width: auto;
             vertical-align: middle;
-            margin-right: 1px;
+            margin-right: 4px;
             filter: brightness(100%) contrast(100%);
         }
-
-        /* Navigation Bar */
         .navbar {
-            background-color: #111111; /* Црна исто како top bar */
+            background-color: #111;
             color: #fff;
             display: flex;
             justify-content: space-between;
@@ -55,39 +47,31 @@
             flex-wrap: wrap;
             font-weight: 300;
             position: relative;
+            border-bottom: 2px solid;
             border-bottom: 1px solid #555;
         }
-
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 20px;
             white-space: nowrap;
-            flex: 0 0 auto;
         }
-
         .logo img {
             height: 40px;
             width: auto;
             display: block;
         }
-
-        .desktop-text {
-            font-weight: 300;
+        .logo span {
             font-size: 1.3rem;
+            font-weight: 300;
             letter-spacing: 0.05em;
             color: #fff;
-            white-space: nowrap;
-            user-select: none;
-            display: inline-block;
         }
-
         .nav-links {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
         }
-
         .nav-links a {
             color: #eee;
             text-decoration: none;
@@ -98,33 +82,274 @@
             letter-spacing: 0.04em;
             white-space: nowrap;
         }
-
         .nav-links a:hover {
             color: #e10600;
             text-decoration: underline;
         }
-
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            width: 20px;
-            height: 15px;
+            width: 24px;
+            height: 18px;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
-
         .hamburger div {
-            height: 2px;
-            background-color: #eee;
+            height: 3px;
+            background: linear-gradient(45deg, #e10600, #b30000);
             border-radius: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            transform-origin: center;
+            box-shadow: none;
+        }
+        .hamburger:hover div {
+            filter: brightness(1.2);
+        }
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            box-shadow: 0 0 8px #e10600cc;
+        }
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            box-shadow: 0 0 8px #b30000cc;
         }
 
-        /* Background Wrapper и делови */
+        /* MOBILE dropdown menu styling */
+        @media (max-width: 480px) {
+            .navbar {
+                flex-wrap: nowrap;
+                padding: 12px 15px;
+            }
+            .nav-links {
+                position: absolute;
+                top: 56px;
+                right: 0;
+                background: linear-gradient(135deg, #8b0000, #b30000);
+                flex-direction: column;
+                width: 160px;
+                display: none;
+                box-shadow: 0 8px 16px rgba(179, 0, 0, 0.7);
+                border-radius: 8px;
+                z-index: 1000;
+
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+            .nav-links.active {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                white-space: nowrap;
+                color: #fff;
+                font-weight: 400;
+                transition: color 0.3s ease, transform 0.25s ease;
+                border-radius: 6px;
+            }
+            .nav-links a:hover {
+                color: #ffcccc;
+                background-color: rgba(255 255 255 / 0.15);
+                transform: scale(1.05);
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .top-bar {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+        @media (max-width: 360px) {
+            .logo img {
+                height: 30px;
+            }
+            .logo span {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo span {
+                display: none;
+            }
+        }
+        .site-footer {
+            background: linear-gradient(to right, #4b0000, #8b0000, #b30000);
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            margin-top: 40px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .site-footer .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .floating-icon {
+            position: absolute;
+            filter: grayscale(100%) brightness(70%);
+            opacity: 0.6;
+            pointer-events: none;
+            transition: filter 0.3s ease;
+        }
+        .floating-icon:hover {
+            filter: grayscale(0%) brightness(100%);
+            opacity: 1;
+        }
+        .floating-icon.icon1 {
+            top: 120px;
+            left: 11%;
+            width: 50px;
+        }
+        .floating-icon.icon2 {
+            top: 130px;
+            right: 12%;
+            width: 50px;
+        }
+        .floating-icon.icon3 {
+            bottom: 120px;
+            left: 35%;
+            width: 45px;
+        }
+        .floating-icon.icon4 {
+            bottom: 100px;
+            right: 9%;
+            width: 40px;
+        }
+        .floating-icon.icon5 {
+            bottom: 30px;
+            right: 90%;
+            width: 40px;
+        }
+        @media (max-width: 480px) {
+            .floating-icon {
+                position: absolute !important;
+                width: 40px !important;
+                opacity: 0.7;
+                filter: grayscale(80%) brightness(80%);
+                pointer-events: none;
+                transition: filter 0.3s ease;
+            }
+            .floating-icon.icon1 {
+                top: 190px;
+                left: 12%;
+            }
+            .floating-icon.icon2 {
+                top: 210px;
+                right: 10%;
+            }
+            .floating-icon.icon3 {
+                bottom: 460px;
+                left: 10%;
+            }
+            .floating-icon.icon4 {
+                bottom: 180px;
+                right: 10%;
+            }
+            .floating-icon.icon5 {
+                bottom: 100px;
+                right: 80%;
+            }
+        }
+        .intro-cortney {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .intro-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+            align-items: start;
+            justify-content: center;
+        }
+        .intro-text-block {
+            text-align: left;
+        }
+        .intro-text-block h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+        .intro-name {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #000;
+        }
+        .intro-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+        .intro-description em {
+            font-style: italic;
+        }
+        .why-cortney {
+            background-color: #eaeaea;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .why-cortney h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #000;
+        }
+        .why-cortney p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .intro-container {
+                display: block;
+                text-align: center;
+            }
+
+            .intro-text-block {
+                margin-bottom: 20px;
+            }
+
+            .intro-text-block h2,
+            .intro-name {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .intro-description {
+                text-align: center;
+                padding: 0 10px;
+            }
+        }
+
+
         .background-wrapper {
             display: flex;
             width: 100vw;
-            height: 550px;  /* зголемена висина за повеќе слика */
+            height: 550px;
             overflow: hidden;
             position: relative;
         }
@@ -132,7 +357,7 @@
         .bac-part {
             flex: 1;
             background-size: cover;
-            background-position: center bottom; /* позиционирај пониско за да се гледа долниот дел */
+            background-position: center bottom;
             background-repeat: no-repeat;
             position: relative;
         }
@@ -157,53 +382,6 @@
             z-index: 5;
         }
 
-        /* Текст во левиот дел од позадината */
-        .left-text {
-            position: absolute;
-            top: 20%;
-            left: 20px;
-            color: #eee;
-            max-width: 250px;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeInText 1.5s ease forwards;
-            animation-delay: 0.5s;
-            user-select: none;
-            text-shadow: 0 0 6px rgba(0,0,0,0.7);
-        }
-
-        .left-text h2 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .left-text p {
-            font-size: 0.9rem;
-            line-height: 1.3;
-        }
-
-        .satisfied-text {
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            color: #e10600;
-            font-weight: 700;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            user-select: none;
-            text-shadow: 0 0 6px rgba(0,0,0,0.7);
-            opacity: 0;
-            animation: fadeInText 2s ease forwards;
-            animation-delay: 2s;
-        }
-
-        @keyframes fadeInText {
-            to {
-                opacity: 1;
-            }
-        }
-
         .wave-mask {
             position: absolute;
             bottom: -30px;
@@ -220,123 +398,36 @@
             width: 100%;
             height: 100%;
         }
-
-        /* Содржина веднаш под позадината */
-        section.content {
-            background-color: #fffafa;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-            text-align: center;
-        }
-
-        section.content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        section.content p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .background-wrapper {
-                flex-direction: column;
-                height: 350px;
-            }
-            .bac-part {
-                height: 33.33%;
-                flex: none;
-            }
-            .left-text {
-                position: static;
-                max-width: 100%;
-                margin: 20px auto 0;
-                text-align: center;
-                animation-delay: 0;
-                opacity: 1;
-            }
-            .satisfied-text {
-                position: static;
-                font-size: 1.5rem;
-                margin: 20px auto 0;
-                opacity: 1;
-                animation-delay: 0;
-                text-align: center;
-            }
+        .mobile-bg-img {
+            display: none;
         }
 
         @media (max-width: 480px) {
-            .desktop-text {
+            .bac-part.left,
+            .bac-part.right {
                 display: none;
             }
 
-            .navbar {
-                flex-wrap: nowrap;
-                padding: 12px 15px;
-                justify-content: space-between;
+            .bac-part.center {
+                display: none; /* hide original background */
             }
 
-            .logo {
-                gap: 0;
-            }
-
-            .logo img {
-                height: 40px;
-            }
-
-            .nav-links {
+            .mobile-bg-img {
+                display: block;
+                width: 100%;
+                height: auto;
                 position: absolute;
-                top: 56px;
-                right: 0;
-                background-color: #000;
-                flex-direction: column;
-                width: 150px;
-                display: none;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-                border-radius: 4px;
-                z-index: 1000;
+                top: 0;
+                left: 0;
+                z-index: 1;
             }
 
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 10px 15px;
-                font-size: 0.85rem;
-                white-space: nowrap;
-            }
-
-            .top-bar {
-                font-size: 0.55rem;
-            }
-
-            .hamburger {
-                display: flex;
+            .glass-overlay,
+            .wave-mask {
+                z-index: 2;
             }
         }
 
-        @media (max-width: 360px) {
-            .logo img {
-                height: 30px;
-            }
-
-            .desktop-text {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .desktop-text {
-                font-size: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -351,10 +442,10 @@
 <nav class="navbar">
     <div class="logo">
         <img src="images/logo.png" alt="Martin Spirovski Logo" />
-        <span class="desktop-text">Мартин Спировски</span>
+        <span>Martin Spirovski</span>
     </div>
 
-    <div class="hamburger" id="hamburger">
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
         <div></div>
         <div></div>
         <div></div>
@@ -370,11 +461,10 @@
 </nav>
 
 <div class="background-wrapper">
-    <div class="bac-part left">
-
-    </div>
+    <div class="bac-part left"></div>
     <div class="bac-part center"></div>
     <div class="bac-part right"></div>
+    <img src="images/bac2.JPG" alt="Full Background Mobile" class="mobile-bg-img" />
 
     <div class="glass-overlay"></div>
 
@@ -385,13 +475,92 @@
     </div>
 </div>
 
+<section class="intro-cortney">
+    <div class="intro-container">
+        <div class="intro-text-block">
+            <h2>Здраво, јас сум</h2>
+            <div class="intro-name">Мартин</div>
+        </div>
+        <div class="intro-description">
+            <p>Имам повеќе од една деценија искуство во спортот и фитнесот. Тренирав фудбал 13 години, од кои 2 години професионално, што ми помогна да развијам дисциплина, посветеноста и тимски дух.</p>
+            <p>Во моментов сум студент на Факултетот за физичка култура, спорт и здравје, четврта година. Паралелно со студиите, веќе четири години активно тренирам во теретана, а последната година работам како сертифициран фитнес тренер.</p>
+            <p>За да го усовршам своето знаење и пристап, завршив два специјализирани курсеви за маркетинг и програмирање на тренинг планови и циклуси. Со тоа креирам ефективни и индивидуализирани програми кои комбинираат спортско искуство и научни методи.</p>
+        </div>
+    </div>
+</section>
+
+<section class="why-cortney">
+    <h2>Зошто мене?</h2>
+    <p>Мојата цел е да ви помогнам да ја постигнете својата најдобра физичка форма и здравје преку: </p>
+    <p style="color: #a30606; font-weight: bold;">• персонализирани тренинзи според вашите можности и цели</p>
+    <p style="color: #a30606; font-weight: bold;"> • здрава и балансирана исхрана прилагодена на вашите можности и темпо на живот</p>
+    <p style="color: #a30606; font-weight: bold;"> • постојано советување и водење низ процесот</p>
+    <p>Верувам дека спортот и здравиот начин на живот се клучни за успех на сите полиња во животот и за постигнување на целокупна физичка и психичка благосостојба.</p>
+</section>
+
+
+<section style="position: relative; text-align:center; padding: 50px 20px; background-color: #f9f9f9;">
+    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ddd;">
+                <img src="images/circle1.jpeg" alt="Gym Movement" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Посветеност</h3>
+            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+        </div>
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #e10600;">
+                <img src="images/circle2.jpeg" alt="Fitness Practice" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Одговорност</h3>
+            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit. </p>
+        </div>
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ccc;">
+                <img src="images/circle3.jpeg" alt="Achievement" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Тимска соработка</h3>
+            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+
+    </div>
+
+    <img src="images/dumbbells.png" alt="Icon 1" class="floating-icon icon1" />
+    <img src="images/health.png" alt="Icon 2" class="floating-icon icon2" />
+    <img src="images/nutrition.png" alt="Icon 3" class="floating-icon icon3" />
+    <img src="images/plan.png" alt="Icon 4" class="floating-icon icon4" />
+    <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
+
+</section>
+
+
 <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
+
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
+    hamburger.addEventListener('keypress', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            hamburger.click();
+        }
     });
 </script>
 
 </body>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 Martin Spirovski Fitness. All rights reserved.</p>
+    </div>
+</footer>
+
 </html>
