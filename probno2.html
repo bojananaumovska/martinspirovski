@@ -63,6 +63,7 @@
       height: 40px;
       width: auto;
       display: block;
+      padding-left: 7px;
     }
     .logo span {
       font-size: 1.3rem;
@@ -163,6 +164,7 @@
       }
       .logo {
         font-size: 1.1rem;
+        padding-left: 6px;
       }
       .top-bar {
         font-size: 0.7rem;
@@ -193,7 +195,7 @@
       font-size: 0.85rem;
       font-weight: 300;
       letter-spacing: 0.03em;
-      margin-top: 40px;
+      margin-top: 0px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .site-footer .footer-content {
@@ -336,6 +338,116 @@
         z-index: 2;
       }
     }
+    .fancy-bmi-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff4d4d, #e10600, #b80000, #e10600, #ff4d4d);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      animation: gradientShift 3s ease infinite alternate;
+    }
+
+    /* Анимација што ги движи боите на омбре-то */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+    .elegant-bmi-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #b22222;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .elegant-bmi-title:hover {
+      transform: scale(1.07);
+      text-shadow:
+              2px 2px 5px rgba(178, 34, 34, 0.7),
+              0 0 15px rgba(139, 0, 0, 0.5);
+    }
+    @media (max-width: 480px) {
+      .bmi-intro {
+        font-size: 18px !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        white-space: nowrap;
+      }
+      .elegant-bmi-title {
+        font-size: 1.6rem !important; /* помала големина за мобилни */
+        line-height: 1.2;
+        padding-bottom: 10px;
+      }
+      .bmi-intro img {
+        width: 33px !important;
+        height: 33px !important;
+        filter: invert(30%) brightness(100%) !important;
+        -webkit-filter: invert(30%) brightness(100%) !important;
+        vertical-align: middle;
+      }
+      #bmiResult {
+        font-size: 1rem !important;
+        font-weight: 600;
+        color: #222;
+        margin-top: 25px !important;
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      #bmiAdvice {
+        font-size: 0.9rem !important;
+        font-weight: 400;
+        max-width: 90% !important;
+        margin: 15px auto 0 auto !important;
+        color: #444;
+        line-height: 1.3;
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      #activity {
+        height: 44px !important;
+        padding: 10px 14px !important;
+        font-size: 1rem !important;
+        border-radius: 6px !important;
+        box-sizing: border-box;
+      }
+
+      #weight, #height, #age, #sex {
+        height: 44px !important;
+        padding: 10px 14px !important;
+        font-size: 1rem !important;
+        border-radius: 6px !important;
+        box-sizing: border-box;
+      }
+    }
+    .bottom-wave-mask {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      z-index: 1;
+      background-color: #f9f9f9;
+
+    }
+    .bottom-wave-mask svg {
+      display: block;
+      width: 100%;
+      height: 160px;
+    }
+
   </style>
 </head>
 <body>
@@ -384,24 +496,19 @@
 </div>
 
 <section style="background-color: #f9f9f9; padding: 40px 20px 20px 20px; text-align: center; color: #222;">
-  <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 10px;">
-    <span style="color: #e10600;">ИНДЕКС НА ТЕЛЕСНА МАСА (BMI)</span><br>
+  <h2 class="elegant-bmi-title">
+    ИНДЕКС НА ТЕЛЕСНА МАСА (BMI)
   </h2>
-  <p style="font-size: 25px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <p class="bmi-intro" style="font-size: 25px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
     Пресметај го твојот BMI сега
-    <img src="images/bmi.png" width="40" height="40"
-         style="filter: invert(60%) brightness(120%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;"
-         alt="BMI Icon" />
-
+    <img src="images/bmi.png" width="45" height="45" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
   </p>
 
+
   <form id="bmiForm" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 1100px; margin: 0 auto;">
-    <input type="number" id="weight" name="weight" required min="30" max="300" placeholder="Тежина (kg)"
-           style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
-    <input type="number" id="height" name="height" required min="100" max="250" placeholder="Висина (cm)"
-           style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
-    <input type="number" id="age" name="age" required min="10" max="120" placeholder="Возраст"
-           style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 100px; background: #fff; color: #222;">
+    <input type="number" id="weight" placeholder="Тежина / KG" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
+    <input type="number" id="height" placeholder="Висина / CM" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
+    <input type="number" id="age" placeholder="Возраст" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 100px; background: #fff; color: #222;">
 
     <select id="sex" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 140px; background: #fff; color: #222;">
       <option value="">Пол</option>
@@ -418,7 +525,7 @@
       <option value="1.9">Екстремно активен (2x дневно)</option>
     </select>
 
-    <button type="submit" style="background: #e10600; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
+    <button type="submit" style="background: #e10600; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
       Пресметај
     </button>
   </form>
@@ -427,12 +534,12 @@
   <div id="bmiResult" style="margin-top: 40px; font-size: 1.3rem; font-weight: 600; color: #222;"></div>
   <div id="bmiAdvice" style="margin-top: 18px; font-size: 1rem; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; color: #444;"></div>
 
-  <button id="contactBtn" style="display:none; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
+  <button id="contactBtn" style="display:none; font-family: 'Roboto', Arial, sans-serif; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
     КОНТАКТИРАЈ МЕ
   </button>
 </section>
 
-<section style="position: relative; text-align:center; padding: 20px 20px 50px 20px; background-color: #f9f9f9;">
+<section style="position: relative; text-align:center; padding: 20px 2px 0px 20px; background-color: #f9f9f9;">
   <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
 
@@ -470,6 +577,12 @@
 
 </section>
 
+<div class="bottom-wave-mask" aria-hidden="true">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+  </svg>
+</div>
+
 <footer class="site-footer">
   <div class="footer-content">
     &copy; 2025 Martin Spirovski Fitness. All rights reserved.
@@ -477,6 +590,14 @@
 </footer>
 
 <script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
   document.getElementById("bmiForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -486,42 +607,13 @@
     const sex = document.getElementById("sex").value;
     const activity = parseFloat(document.getElementById("activity").value);
 
-    const errorMessage = document.getElementById("errorMessage");
     const bmiResult = document.getElementById("bmiResult");
     const bmiAdvice = document.getElementById("bmiAdvice");
     const contactBtn = document.getElementById("contactBtn");
 
-    // Reset
-    errorMessage.style.display = "none";
-    errorMessage.textContent = "";
     bmiResult.textContent = "";
     bmiAdvice.textContent = "";
     contactBtn.style.display = "none";
-
-    // Валидација (дополнителна безбедност покрај HTML)
-    if (isNaN(weight) || weight < 30 || weight > 300) {
-      errorMessage.textContent = "Внеси реална тежина меѓу 30 и 300 кг.";
-      errorMessage.style.display = "block";
-      return;
-    }
-
-    if (isNaN(height) || height < 100 || height > 250) {
-      errorMessage.textContent = "Внеси реална висина меѓу 100 и 250 см.";
-      errorMessage.style.display = "block";
-      return;
-    }
-
-    if (isNaN(age) || age < 10 || age > 120) {
-      errorMessage.textContent = "Внеси реална возраст меѓу 10 и 120 години.";
-      errorMessage.style.display = "block";
-      return;
-    }
-
-    if (sex === "" || isNaN(activity)) {
-      errorMessage.textContent = "Ве молиме пополнете ги сите полиња.";
-      errorMessage.style.display = "block";
-      return;
-    }
 
     const heightM = height / 100;
     const bmi = weight / (heightM * heightM);
@@ -541,34 +633,32 @@
     }
 
     const tdee = Math.round(bmr * activity);
-
-    bmiResult.innerHTML = `Твојот BMI е <strong>${bmiRounded}</strong> — <strong>${category}</strong>.<br>Проценета дневна калориска потреба (TDEE): <strong>${tdee} kcal</strong>.`;
+    document.getElementById("bmiResult").innerHTML = `Твојот BMI е <strong>${bmiRounded}</strong> — <strong>${category}</strong>.<br>Проценета дневна калориска потреба (TDEE): <strong>${tdee} kcal</strong>.`;
 
     let advice = "";
     if (bmi < 18.5) {
-      advice = "Совет: Обиди се да зголемиш внес на храна со повеќе хранливи материи...";
+      advice = "Совет: Обиди се да зголемиш внес на храна со повеќе хранливи материи. Контактирај ме за повеќе совети како да ја зголемиш телесната тежина, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
     } else if (bmi < 25) {
-      advice = "Совет: Твојата тежина е во нормални граници...";
+      advice = "Совет: Твојата тежина е во нормални граници. Продолжи со здрав начин на живот и редовна активност. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
     } else if (bmi < 30) {
-      advice = "Совет: Внимавај на исхраната и зголеми физичка активност...";
+      advice = "Совет: Внимавај на исхраната и зголеми физичка активност за да избегнеш понатамошно зголемување на тежината. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
     } else {
-      advice = "Совет: Ако сакаш да го намалиш вишокот тежина...";
+      advice = "Совет: Ако сакаш да го намалиш вишокот тежина и да го подобриш своето здравје, контактирај ме за поддршка и персонализирани совети. Заедно можеме да ја постигнеме твојота цел кон поздрав живот.";
     }
 
-    bmiAdvice.innerHTML = advice;
+    document.getElementById("bmiAdvice").innerHTML = advice;
 
     if (bmi < 18.5 || bmi >= 25) {
       contactBtn.style.display = "inline-block";
     } else {
       contactBtn.style.display = "none";
     }
-
     document.getElementById("contactBtn").addEventListener("click", () => {
       window.location.href = "https://example.com/kontakt";
     });
+
   });
 </script>
-
 
 </body>
 </html>

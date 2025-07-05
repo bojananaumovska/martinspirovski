@@ -164,7 +164,7 @@
       }
       .logo {
         font-size: 1.1rem;
-        padding-left: 10px;
+        padding-left: 6px;
       }
       .top-bar {
         font-size: 0.7rem;
@@ -195,7 +195,7 @@
       font-size: 0.85rem;
       font-weight: 300;
       letter-spacing: 0.03em;
-      margin-top: 40px;
+      margin-top: 0px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .site-footer .footer-content {
@@ -338,21 +338,6 @@
         z-index: 2;
       }
     }
-    .fancy-bmi-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #ff4d4d, #e10600, #b80000, #e10600, #ff4d4d);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      cursor: pointer;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      position: relative;
-      overflow: hidden;
-      animation: gradientShift 3s ease infinite alternate;
-    }
-
     /* Анимација што ги движи боите на омбре-то */
     @keyframes gradientShift {
       0% {
@@ -365,7 +350,7 @@
     .elegant-bmi-title {
       font-size: 2.2rem;
       font-weight: 800;
-      color: #b22222; /* темно црвена */
+      color: #b22222;
       cursor: pointer;
       transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
@@ -433,6 +418,159 @@
         box-sizing: border-box;
       }
     }
+    .bottom-wave-mask {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      z-index: 1;
+      background-color: #f9f9f9;
+    }
+    .bottom-wave-mask svg {
+      display: block;
+      width: 100%;
+      height: 160px;
+    }
+    .carousel {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      height: 350px; /* fixed height */
+      background: #111; /* white background */
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .carousel__viewport {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      overflow-x: auto;
+      overflow: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel__viewport::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel__slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      max-width: 100%;
+      border-radius: 12px;
+      background: #f7f7f7;
+      color: #222;
+      font-size: 2rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Slight color difference on even slides */
+    .carousel__slide:nth-child(even) {
+      background: #ececec;
+    }
+
+    /* Navigation arrows inside slides */
+    .carousel__prev,
+    .carousel__next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #a30606;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .carousel__prev:hover,
+    .carousel__next:hover {
+      opacity: 1;
+    }
+
+    .carousel__prev {
+      left: 15px;
+    }
+
+    .carousel__next {
+      right: 15px;
+    }
+
+    /* Navigation dots container */
+    .carousel__navigation {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+    }
+
+    .carousel__navigation-list {
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+    }
+    .carousel__navigation-item {
+    }
+    .carousel__navigation-button {
+      display: block;
+      width: 14px;
+      height: 14px;
+      background: #ddd;
+      border-radius: 50%;
+      text-indent: -9999px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .carousel__navigation-button:focus,
+    .carousel__navigation-button:hover,
+    .carousel__navigation-button:active {
+      background-color: #a30606;
+      border-color: #a30606;
+      outline: none;
+    }
+    .carousel__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      transform: scale(1.15);  /* zoom 10% */
+      transition: transform 0.3s ease;  /* optional smooth effect */
+      overflow: hidden;
+    }
+    @media (max-width: 480px) {
+      .carousel {
+        max-width: 280px !important; /* smaller width */
+        height: 240px !important;    /* smaller height */
+      }
+      .carousel__slide img {
+        transform: scale(1.25) !important; /* optional: slightly less zoom so image fits nicely */
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -510,7 +648,7 @@
       <option value="1.9">Екстремно активен (2x дневно)</option>
     </select>
 
-    <button type="submit" style="background: #e10600; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
+    <button type="submit" style="background: #e10600; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
       Пресметај
     </button>
   </form>
@@ -519,12 +657,12 @@
   <div id="bmiResult" style="margin-top: 40px; font-size: 1.3rem; font-weight: 600; color: #222;"></div>
   <div id="bmiAdvice" style="margin-top: 18px; font-size: 1rem; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; color: #444;"></div>
 
-  <button id="contactBtn" style="display:none; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
+  <button id="contactBtn" style="display:none; font-family: 'Roboto', Arial, sans-serif; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
     КОНТАКТИРАЈ МЕ
   </button>
 </section>
 
-<section style="position: relative; text-align:center; padding: 20px 20px 50px 20px; background-color: #f9f9f9;">
+<section style="position: relative; text-align:center; padding: 20px 2px 0px 20px; background-color: #f9f9f9;">
   <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
 
@@ -561,6 +699,97 @@
   <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
 
 </section>
+
+<div class="bottom-wave-mask" aria-hidden="true">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+  </svg>
+</div>
+
+<p style='background-color: #111'>
+  .
+  .
+  .
+  .
+</p>
+
+<div style="background-color: #111111; margin-bottom: 0px; margin-top: 0px">
+  <section class="carousel" aria-label="Gallery">
+    <ol class="carousel__viewport">
+      <li id="carousel__slide1"
+          tabindex="0"
+          class="carousel__slide">
+        <div class="carousel__snapper">
+          <img src="images/1.png" alt="Description of Slide 1" />
+          <a href="#carousel__slide4"
+             class="carousel__prev">←</a>
+          <a href="#carousel__slide2"
+             class="carousel__next">→</a>
+        </div>
+      </li>
+      <li id="carousel__slide2"
+          tabindex="0"
+          class="carousel__slide">
+        <div class="carousel__snapper"></div>
+        <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
+        <a href="#carousel__slide1"
+           class="carousel__prev">←</a>
+        <a href="#carousel__slide3"
+           class="carousel__next">→</a>
+      </li>
+      <li id="carousel__slide3"
+          tabindex="0"
+          class="carousel__slide">
+        <div class="carousel__snapper"></div>
+        <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
+        <a href="#carousel__slide2"
+           class="carousel__prev">←</a>
+        <a href="#carousel__slide4"
+           class="carousel__next">→</a>
+      </li>
+      <li id="carousel__slide4"
+          tabindex="0"
+          class="carousel__slide">
+        <div class="carousel__snapper"></div>
+        <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
+        <a href="#carousel__slide3"
+           class="carousel__prev">←</a>
+        <a href="#carousel__slide1"
+           class="carousel__next">→</a>
+      </li>
+    </ol>
+    <aside class="carousel__navigation">
+      <ol class="carousel__navigation-list">
+        <li class="carousel__navigation-item">
+          <a href="#carousel__slide1"
+             class="carousel__navigation-button">Go to slide 1</a>
+        </li>
+        <li class="carousel__navigation-item">
+          <a href="#carousel__slide2"
+             class="carousel__navigation-button">Go to slide 2</a>
+        </li>
+        <li class="carousel__navigation-item">
+          <a href="#carousel__slide3"
+             class="carousel__navigation-button">Go to slide 3</a>
+        </li>
+        <li class="carousel__navigation-item">
+          <a href="#carousel__slide4"
+             class="carousel__navigation-button">Go to slide 4</a>
+        </li>
+      </ol>
+    </aside>
+  </section>
+</div>
+
+<p style="background-color: #111111">
+  .
+  .
+</p>
+
+<p style="background-color: #111111">
+  .
+  .
+</p>
 
 <footer class="site-footer">
   <div class="footer-content">
