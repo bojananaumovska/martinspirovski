@@ -435,12 +435,13 @@
             position: relative;
             max-width: 400px;
             margin: 0 auto;
-            height: 350px; /* fixed height */
-            background: #111; /* white background */
+            height: 370px;
+            background: #111;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
             overflow: hidden;
             font-family: 'Roboto', Arial, sans-serif;
+            margin-bottom: 10px;
         }
         .carousel__viewport {
             display: flex;
@@ -557,17 +558,77 @@
             display: block;
             pointer-events: none;
             user-select: none;
-            transform: scale(1.15);  /* zoom 10% */
-            transition: transform 0.3s ease;  /* optional smooth effect */
+            transform: scale(1.24);
+            transition: transform 0.3s ease;
             overflow: hidden;
         }
+        .carousel-container {
+            background-color: #111111;
+            flex: 1;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
         @media (max-width: 480px) {
+            .carousel-container {
+                padding: 40px 0;
+            }
             .carousel {
-                max-width: 280px !important; /* smaller width */
-                height: 240px !important;    /* smaller height */
+                max-width: 320px !important;
+                height: 280px !important;
             }
             .carousel__slide img {
-                transform: scale(1.25) !important; /* optional: slightly less zoom so image fits nicely */
+                transform: scale(1.25) !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .wave-mask {
+                height: 380px !important;
+                bottom: -50px !important;
+            }
+
+            .wave-mask svg {
+                height: 100% !important;
+            }
+        }
+        .parentclass {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+            background-color: #f9f9f9;
+        }
+
+        .textclass {
+            flex: 1;
+            max-width: 500px;
+            min-width: 280px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            color: #222;
+            text-align: left;
+        }
+        @media (max-width: 600px) {
+            .textclass {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .textclass h2 {
+                font-size: 1.4rem !important;
+                line-height: 1.3;
+            }
+
+            .textclass div {
+                width: 100px !important;
+            }
+
+            .textclass p {
+                font-size: 0.9rem !important;
             }
         }
 
@@ -577,9 +638,11 @@
 
 <div class="top-bar">
     <img src="images/email.png" alt="Email Icon" class="icon" />
-    s.martin@live.com &nbsp;&nbsp;
+    <a href="mailto:s.martin@live.com" style="color: white; text-decoration: none;">s.martin@live.com</a>
     <img src="images/location.png" alt="Location Icon" class="icon" />
-    Mateja Mateski 22, Skopje 1000
+    <a href="https://maps.app.goo.gl/HxDZQLZVSfcxhqL46" target="_blank" style="color: white; text-decoration: none;">
+        Mateja Mateski 22, Skopje 1000
+    </a>
 </div>
 
 <nav class="navbar">
@@ -706,90 +769,94 @@
     </svg>
 </div>
 
-<p style='background-color: #111'>
-    .
-    .
-    .
-    .
-</p>
 
-<div style="background-color: #111111; margin-bottom: 0px; margin-top: 0px">
-    <section class="carousel" aria-label="Gallery">
-        <ol class="carousel__viewport">
-            <li id="carousel__slide1"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper">
-                    <img src="images/1.png" alt="Description of Slide 1" />
-                    <a href="#carousel__slide4"
-                       class="carousel__prev">←</a>
-                    <a href="#carousel__slide2"
-                       class="carousel__next">→</a>
-                </div>
-            </li>
-            <li id="carousel__slide2"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
-                <a href="#carousel__slide1"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide3"
-                   class="carousel__next">→</a>
-            </li>
-            <li id="carousel__slide3"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
-                <a href="#carousel__slide2"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide4"
-                   class="carousel__next">→</a>
-            </li>
-            <li id="carousel__slide4"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
-                <a href="#carousel__slide3"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide1"
-                   class="carousel__next">→</a>
-            </li>
-        </ol>
-        <aside class="carousel__navigation">
-            <ol class="carousel__navigation-list">
-                <li class="carousel__navigation-item">
+<div class="parentclass" style="background-color: #111111">
+    <div class="textclass" style="background-color: #111111; padding-left: 110px;">
+        <h2 style="font-size: 1.8rem; font-weight: 450; color: #fff; margin-bottom: 20px;font-family: 'Roboto', Arial, sans-serif;">
+            Вистински резултати, реални
+            ТРАНСФОРМАЦИИ
+        </h2>
+        <div style="
+        height: 4px;
+        width: 140px;
+        background: linear-gradient(90deg, #ff0000, #ff6666);
+        margin-bottom: 25px;">
+        </div>
+        <p style="color: #ccc; font-size: 1rem; line-height: 1.6;font-family: 'Roboto', Arial, sans-serif;">
+            Секоја трансформација има своја приказна – приказна на одлучност, дисциплина и посветеност. Како личен тренер, моја мисија е да ти помогнам да ја достигнеш твојата најдобра верзија. Без оглед дали целта ти е слабеење, зголемување на мускулна маса или едноставно поздрав начин на живот – секој чекор го поминуваме заедно.
+        </p>
+        <p style="color: #bbb; font-size: 0.95rem; margin-top: 15px;font-family: 'Roboto', Arial, sans-serif;">
+            Инспирирај се од вистински луѓе, вистински резултати. Придружи ни се денес.
+        </p>
+    </div>
+
+        <section class="carousel" aria-label="Gallery">
+            <ol class="carousel__viewport">
+                <li id="carousel__slide1"
+                    tabindex="0"
+                    class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <img src="images/1.png" alt="Description of Slide 1" />
+                        <a href="#carousel__slide4"
+                           class="carousel__prev">←</a>
+                        <a href="#carousel__slide2"
+                           class="carousel__next">→</a>
+                    </div>
+                </li>
+                <li id="carousel__slide2"
+                    tabindex="0"
+                    class="carousel__slide">
+                    <div class="carousel__snapper"></div>
+                    <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
                     <a href="#carousel__slide1"
-                       class="carousel__navigation-button">Go to slide 1</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide2"
-                       class="carousel__navigation-button">Go to slide 2</a>
-                </li>
-                <li class="carousel__navigation-item">
+                       class="carousel__prev">←</a>
                     <a href="#carousel__slide3"
-                       class="carousel__navigation-button">Go to slide 3</a>
+                       class="carousel__next">→</a>
                 </li>
-                <li class="carousel__navigation-item">
+                <li id="carousel__slide3"
+                    tabindex="0"
+                    class="carousel__slide">
+                    <div class="carousel__snapper"></div>
+                    <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
+                    <a href="#carousel__slide2"
+                       class="carousel__prev">←</a>
                     <a href="#carousel__slide4"
-                       class="carousel__navigation-button">Go to slide 4</a>
+                       class="carousel__next">→</a>
+                </li>
+                <li id="carousel__slide4"
+                    tabindex="0"
+                    class="carousel__slide">
+                    <div class="carousel__snapper"></div>
+                    <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
+                    <a href="#carousel__slide3"
+                       class="carousel__prev">←</a>
+                    <a href="#carousel__slide1"
+                       class="carousel__next">→</a>
                 </li>
             </ol>
-        </aside>
-    </section>
+            <aside class="carousel__navigation">
+                <ol class="carousel__navigation-list">
+                    <li class="carousel__navigation-item">
+                        <a href="#carousel__slide1"
+                           class="carousel__navigation-button">Go to slide 1</a>
+                    </li>
+                    <li class="carousel__navigation-item">
+                        <a href="#carousel__slide2"
+                           class="carousel__navigation-button">Go to slide 2</a>
+                    </li>
+                    <li class="carousel__navigation-item">
+                        <a href="#carousel__slide3"
+                           class="carousel__navigation-button">Go to slide 3</a>
+                    </li>
+                    <li class="carousel__navigation-item">
+                        <a href="#carousel__slide4"
+                           class="carousel__navigation-button">Go to slide 4</a>
+                    </li>
+                </ol>
+            </aside>
+        </section>
 </div>
 
-<p style="background-color: #111111">
-    .
-    .
-</p>
-
-<p style="background-color: #111111">
-    .
-    .
-</p>
 
 <footer class="site-footer">
     <div class="footer-content">
