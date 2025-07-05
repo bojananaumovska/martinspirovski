@@ -433,9 +433,9 @@
     }
     .carousel {
       position: relative;
-      max-width: 430px;
+      max-width: 400px;
       margin: 0 auto;
-      height: 380px; /* fixed height */
+      height: 370px; /* fixed height */
       background: #111; /* white background */
       border-radius: 12px;
       box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
@@ -557,7 +557,7 @@
       display: block;
       pointer-events: none;
       user-select: none;
-      transform: scale(1.15);  /* zoom 10% */
+      transform: scale(1.20);  /* zoom 10% */
       transition: transform 0.3s ease;  /* optional smooth effect */
       overflow: hidden;
     }
@@ -574,13 +574,24 @@
         padding: 40px 0;
       }
       .carousel {
-        max-width: 320px !important; /* smaller width */
-        height: 280px !important;    /* smaller height */
+        max-width: 320px !important;
+        height: 280px !important;
       }
       .carousel__slide img {
-        transform: scale(1.25) !important; /* optional: slightly less zoom so image fits nicely */
+        transform: scale(1.25) !important;
       }
     }
+    @media (max-width: 480px) {
+      .wave-mask {
+        height: 380px !important;
+        bottom: -50px !important;
+      }
+
+      .wave-mask svg {
+        height: 100% !important;
+      }
+    }
+
 
   </style>
 </head>
