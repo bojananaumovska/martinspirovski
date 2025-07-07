@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="description" content="Мартин Спировски, сертифициран фитнес тренер кој ќе ти помогне да го направиш првиот чекор кон трансформација. Вложи во себе и грижи се за своето здравје со стручен и мотивирачки пристап.">
     <meta name="keywords" content="здрав живот, фитнес, трансформации, BMI, исхрана, слабеење, мускулна маса, тренер, програми, вежби, план за исхрана, фитнес тренинг, здрава исхрана, тренинг план, личен тренер, вежбање, мотивација, физичка активност, здравје, фитнес совети">
-    <meta name="author" content="Bojana Naumovska">
     <title>Martin Spirovski Fitness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
@@ -23,6 +22,7 @@
             color: #222;
             background-color: #f9f9f9;
             overscroll-behavior-y: auto;
+            overflow-x: hidden;
         }
         .top-bar {
             background-color: #111111;
@@ -339,7 +339,6 @@
                 z-index: 2;
             }
         }
-        /* Анимација што ги движи боите на омбре-то */
         @keyframes gradientShift {
             0% {
                 background-position: 0% 50%;
@@ -568,10 +567,9 @@
         }
         @media (max-width: 480px) {
             .wave-mask {
-                height: 380px !important;
+                height: 340px !important;
                 bottom: -50px !important;
             }
-
             .wave-mask svg {
                 height: 100% !important;
             }
@@ -659,6 +657,73 @@
             color: #ff4d4d;
             outline: none;
         }
+        .hero-content {
+            position: absolute;
+            top: 56%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 1rem;
+            max-width: 90%;
+        }
+        .hero-content h1 {
+            font-size: 2.0rem;
+            font-weight: 900;
+            margin-bottom: 7px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            color: #f0f0f0;
+        }
+        #counter {
+            font-size: 3.7rem;
+            font-weight: bold;
+            color: rgba(232, 23, 23, 0.8);
+        }
+        .buttonpocetna {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin-top: 20px;
+            background-color: #e10600;
+            color: #fff;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 3px 8px #b30000cc;
+            transition: background-color 0.3s ease;
+        }
+        @media (max-width: 480px) {
+            .hero-content {
+                top: 50%;
+                padding: 0.5rem;
+                max-width: 95%;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+                text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+            }
+            .hero-content p {
+                font-size: 1rem; /* помал текст */
+                margin-bottom: 5px;
+            }
+            #counter {
+                font-size: 3rem; /* малку помал број */
+            }
+            .buttonpocetna {
+                padding: 12px 28px; /* помали димензии на копчето */
+                font-size: 1rem;   /* помал текст */
+                margin-top: 15px;
+                box-shadow: 0 2px 6px #b30000cc; /* помала сенка */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -700,6 +765,12 @@
     <img src="images/bac2.JPG" alt="Full Background Mobile" class="mobile-bg-img" />
 
     <div class="glass-overlay"></div>
+
+    <div class="hero-content">
+        <h1>ТВОЈАТА ЖИВОТНА ТРАНСФОРМАЦИЈА<br>ЗАПОЧНУВА ТУКА!</h1>
+        <p><span id="counter">0</span>+ задоволни корисници</p>
+        <button class="buttonpocetna">ЗАКАЖИ БЕСПЛАТЕН ПРОБЕН ТРЕНИНГ </button>
+    </div>
 
     <div class="wave-mask" aria-hidden="true">
         <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -918,6 +989,27 @@
 
 
 <script>
+    const counter = document.getElementById("counter");
+    const end = 100;
+    const duration = 2000; // 1000 ms = 1 секунда
+    let startTime = null;
+
+    function animate(now) {
+        if (!startTime) startTime = now; // земи го почетното време при првото повикување
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(progress * end);
+        counter.textContent = value;
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+
+
+    // Trigger the counter when the page is loaded
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
 
@@ -975,12 +1067,8 @@
         }
 
         document.getElementById("bmiAdvice").innerHTML = advice;
+        contactBtn.style.display = "inline-block";
 
-        if (bmi < 18.5 || bmi >= 25) {
-            contactBtn.style.display = "inline-block";
-        } else {
-            contactBtn.style.display = "none";
-        }
         document.getElementById("contactBtn").addEventListener("click", () => {
             window.location.href = "https://example.com/kontakt";
         });
