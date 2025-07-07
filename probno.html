@@ -22,6 +22,7 @@
             line-height: 1.5;
             color: #222;
             background-color: #f9f9f9;
+            overscroll-behavior-y: auto;
         }
         .top-bar {
             background-color: #111111;
@@ -164,7 +165,7 @@
             }
             .logo {
                 font-size: 1.1rem;
-                padding-left: 6px;
+                padding-left: 10px;
             }
             .top-bar {
                 font-size: 0.7rem;
@@ -448,7 +449,10 @@
             height: 100%;
             width: 100%;
             overflow-x: auto;
-            overflow: hidden;
+            overscroll-behavior-x: contain;
+            overscroll-behavior-y: contain;
+            overflow-y: hidden;
+            touch-action: pan-y;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -477,12 +481,9 @@
             position: relative;
             overflow: hidden;
         }
-        /* Slight color difference on even slides */
         .carousel__slide:nth-child(even) {
             background: #ececec;
         }
-
-        /* Navigation arrows inside slides */
         .carousel__prev,
         .carousel__next {
             position: absolute;
@@ -500,21 +501,16 @@
             user-select: none;
             z-index: 10;
         }
-
         .carousel__prev:hover,
         .carousel__next:hover {
             opacity: 1;
         }
-
         .carousel__prev {
             left: 15px;
         }
-
         .carousel__next {
             right: 15px;
         }
-
-        /* Navigation dots container */
         .carousel__navigation {
             position: absolute;
             bottom: 15px;
@@ -522,7 +518,6 @@
             transform: translateX(-50%);
             z-index: 20;
         }
-
         .carousel__navigation-list {
             list-style: none;
             display: flex;
@@ -562,19 +557,7 @@
             transition: transform 0.3s ease;
             overflow: hidden;
         }
-        .carousel-container {
-            background-color: #111111;
-            flex: 1;
-            margin-top: 0;
-            margin-bottom: 0;
-            padding: 20px 0;
-            display: flex;
-            justify-content: center;
-        }
         @media (max-width: 480px) {
-            .carousel-container {
-                padding: 40px 0;
-            }
             .carousel {
                 max-width: 320px !important;
                 height: 280px !important;
@@ -602,7 +585,6 @@
             flex-wrap: wrap;
             background-color: #f9f9f9;
         }
-
         .textclass {
             flex: 1;
             max-width: 500px;
@@ -631,7 +613,52 @@
                 font-size: 0.9rem !important;
             }
         }
-
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+            margin-top: 0;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+        }
+        .middle-wave-mask {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+            margin-top: -1px;
+            background-color: transparent;
+        }
+        .middle-wave-mask svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: scaleY(-1);
+            transform-origin: center;
+        }
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .social-links a {
+            color: #a30606;
+            font-size: 2.2rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover,
+        .social-links a:focus {
+            color: #ff4d4d;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -726,7 +753,7 @@
 </section>
 
 <section style="position: relative; text-align:center; padding: 20px 2px 0px 20px; background-color: #f9f9f9;">
-    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
+    <h2 class="section-title">Lorem ipsum dolor sit amet.</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
 
         <div style="max-width: 280px;">
@@ -790,71 +817,96 @@
         </p>
     </div>
 
-        <section class="carousel" aria-label="Gallery">
-            <ol class="carousel__viewport">
-                <li id="carousel__slide1"
-                    tabindex="0"
-                    class="carousel__slide">
-                    <div class="carousel__snapper">
-                        <img src="images/1.png" alt="Description of Slide 1" />
-                        <a href="#carousel__slide4"
-                           class="carousel__prev">←</a>
-                        <a href="#carousel__slide2"
-                           class="carousel__next">→</a>
-                    </div>
-                </li>
-                <li id="carousel__slide2"
-                    tabindex="0"
-                    class="carousel__slide">
-                    <div class="carousel__snapper"></div>
-                    <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
-                    <a href="#carousel__slide1"
-                       class="carousel__prev">←</a>
-                    <a href="#carousel__slide3"
-                       class="carousel__next">→</a>
-                </li>
-                <li id="carousel__slide3"
-                    tabindex="0"
-                    class="carousel__slide">
-                    <div class="carousel__snapper"></div>
-                    <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
-                    <a href="#carousel__slide2"
-                       class="carousel__prev">←</a>
+    <section class="carousel" aria-label="Gallery">
+        <ol class="carousel__viewport">
+            <li id="carousel__slide1"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="images/1.png" alt="Description of Slide 1" />
                     <a href="#carousel__slide4"
-                       class="carousel__next">→</a>
-                </li>
-                <li id="carousel__slide4"
-                    tabindex="0"
-                    class="carousel__slide">
-                    <div class="carousel__snapper"></div>
-                    <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
-                    <a href="#carousel__slide3"
                        class="carousel__prev">←</a>
-                    <a href="#carousel__slide1"
+                    <a href="#carousel__slide2"
                        class="carousel__next">→</a>
+                </div>
+            </li>
+            <li id="carousel__slide2"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
+                <a href="#carousel__slide1"
+                   class="carousel__prev">←</a>
+                <a href="#carousel__slide3"
+                   class="carousel__next">→</a>
+            </li>
+            <li id="carousel__slide3"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
+                <a href="#carousel__slide2"
+                   class="carousel__prev">←</a>
+                <a href="#carousel__slide4"
+                   class="carousel__next">→</a>
+            </li>
+            <li id="carousel__slide4"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
+                <a href="#carousel__slide3"
+                   class="carousel__prev">←</a>
+                <a href="#carousel__slide1"
+                   class="carousel__next">→</a>
+            </li>
+        </ol>
+        <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list">
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide1"
+                       class="carousel__navigation-button">Go to slide 1</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide2"
+                       class="carousel__navigation-button">Go to slide 2</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide3"
+                       class="carousel__navigation-button">Go to slide 3</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide4"
+                       class="carousel__navigation-button">Go to slide 4</a>
                 </li>
             </ol>
-            <aside class="carousel__navigation">
-                <ol class="carousel__navigation-list">
-                    <li class="carousel__navigation-item">
-                        <a href="#carousel__slide1"
-                           class="carousel__navigation-button">Go to slide 1</a>
-                    </li>
-                    <li class="carousel__navigation-item">
-                        <a href="#carousel__slide2"
-                           class="carousel__navigation-button">Go to slide 2</a>
-                    </li>
-                    <li class="carousel__navigation-item">
-                        <a href="#carousel__slide3"
-                           class="carousel__navigation-button">Go to slide 3</a>
-                    </li>
-                    <li class="carousel__navigation-item">
-                        <a href="#carousel__slide4"
-                           class="carousel__navigation-button">Go to slide 4</a>
-                    </li>
-                </ol>
-            </aside>
-        </section>
+        </aside>
+    </section>
+</div>
+
+<div class="middle-wave-mask" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+    </svg>
+</div>
+
+<!-- Add FontAwesome CDN in your <head> -->
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<!-- Social Links Div -->
+<div class="social-links">
+    <a href="https://www.facebook.com/martin.spirovski.124158" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/spirovskimartin/" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="javascript:void(0)" aria-label="TikTok" onclick="return false;">
+        <i class="fab fa-tiktok"></i>
+    </a>
 </div>
 
 
@@ -863,6 +915,7 @@
         &copy; 2025 Martin Spirovski Fitness. All rights reserved.
     </div>
 </footer>
+
 
 <script>
     const hamburger = document.getElementById('hamburger');
