@@ -1,663 +1,213 @@
 <!DOCTYPE html>
 <html lang="mk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Мартин Спировски, сертифициран фитнес тренер кој ќе ти помогне да го направиш првиот чекор кон трансформација. Вложи во себе и грижи се за своето здравје со стручен и мотивирачки пристап.">
-  <meta name="keywords" content="здрав живот, фитнес, трансформации, BMI, исхрана, слабеење, мускулна маса, тренер, програми, вежби, план за исхрана, фитнес тренинг, здрава исхрана, тренинг план, личен тренер, вежбање, мотивација, физичка активност, здравје, фитнес совети">
-  <meta name="author" content="Bojana Naumovska">
-  <title>Martin Spirovski Fitness</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Pacifico&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>3D Flip Book</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
+      background-color: #ffecc6;
+    }
+    * {
       box-sizing: border-box;
     }
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #222;
-      background-color: #f9f9f9;
-    }
-    .top-bar {
-      background-color: #111111;
-      color: #fff;
-      padding: 6px 12px;
-      font-size: 0.75rem;
-      text-align: center;
-      letter-spacing: 0.03em;
-      font-weight: 300;
-      border-bottom: 1px solid #555;
-    }
-    .top-bar .icon {
-      height: 14px;
-      width: auto;
-      vertical-align: middle;
-      margin-right: 4px;
-      filter: brightness(100%) contrast(100%);
-    }
-    .navbar {
-      background-color: #111;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      flex-wrap: wrap;
-      font-weight: 300;
-      position: relative;
-      border-bottom: 2px solid;
-      border-bottom: 1px solid #555;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      white-space: nowrap;
-    }
-    .logo img {
-      height: 40px;
-      width: auto;
-      display: block;
-      padding-left: 7px;
-    }
-    .logo span {
-      font-size: 1.3rem;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      color: #fff;
-    }
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .nav-links a {
-      color: #eee;
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 6px 10px;
-      transition: color 0.3s ease;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-    .nav-links a:hover {
-      color: #e10600;
-      text-decoration: underline;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      width: 24px;
-      height: 18px;
-      justify-content: space-between;
-      transition: transform 0.3s ease;
-    }
-    .hamburger div {
-      height: 3px;
-      background: linear-gradient(45deg, #e10600, #b30000);
-      border-radius: 2px;
-      transition: all 0.4s ease;
-      transform-origin: center;
-      box-shadow: none;
-    }
-    .hamburger:hover div {
-      filter: brightness(1.2);
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-      box-shadow: 0 0 8px #e10600cc;
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-      box-shadow: 0 0 8px #b30000cc;
-    }
-    @media (max-width: 480px) {
-      .navbar {
-        flex-wrap: nowrap;
-        padding: 12px 15px;
-      }
-      .nav-links {
-        position: absolute;
-        top: 56px;
-        right: 0;
-        background: linear-gradient(135deg, #8b0000, #b30000);
-        flex-direction: column;
-        width: 160px;
-        display: none;
-        box-shadow: 0 8px 16px rgba(179, 0, 0, 0.7);
-        border-radius: 8px;
-        z-index: 1000;
-
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-      .nav-links.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .nav-links a {
-        padding: 12px 20px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-        color: #fff;
-        font-weight: 400;
-        transition: color 0.3s ease, transform 0.25s ease;
-        border-radius: 6px;
-      }
-      .nav-links a:hover {
-        color: #ffcccc;
-        background-color: rgba(255 255 255 / 0.15);
-        transform: scale(1.05);
-      }
-      .logo {
-        font-size: 1.1rem;
-        padding-left: 6px;
-      }
-      .top-bar {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-    @media (max-width: 360px) {
-      .logo img {
-        height: 30px;
-      }
-      .logo span {
-        font-size: 1rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .logo span {
-        display: none;
-      }
-    }
-    .site-footer {
-      background: linear-gradient(to right, #4b0000, #8b0000, #b30000);
-      color: #fff;
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      margin-top: 0px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-    .site-footer .footer-content {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .floating-icon {
-      position: absolute;
-      filter: grayscale(100%) brightness(70%);
-      opacity: 0.6;
-      pointer-events: none;
-      transition: filter 0.3s ease;
-    }
-    .floating-icon:hover {
-      filter: grayscale(0%) brightness(100%);
-      opacity: 1;
-    }
-    .floating-icon.icon1 {
-      top: 120px;
-      left: 11%;
-      width: 50px;
-    }
-    .floating-icon.icon2 {
-      top: 130px;
-      right: 12%;
-      width: 50px;
-    }
-    .floating-icon.icon3 {
-      bottom: 120px;
-      left: 35%;
-      width: 45px;
-    }
-    .floating-icon.icon4 {
-      bottom: 100px;
-      right: 9%;
-      width: 40px;
-    }
-    .floating-icon.icon5 {
-      bottom: 30px;
-      right: 90%;
-      width: 40px;
-    }
-    @media (max-width: 480px) {
-      .floating-icon {
-        position: absolute !important;
-        width: 40px !important;
-        opacity: 0.7;
-        filter: grayscale(80%) brightness(80%);
-        pointer-events: none;
-        transition: filter 0.3s ease;
-      }
-      .floating-icon.icon1 {
-        top: 190px;
-        left: 12%;
-      }
-      .floating-icon.icon2 {
-        top: 210px;
-        right: 10%;
-      }
-      .floating-icon.icon3 {
-        bottom: 460px;
-        left: 10%;
-      }
-      .floating-icon.icon4 {
-        bottom: 180px;
-        right: 10%;
-      }
-      .floating-icon.icon5 {
-        bottom: 100px;
-        right: 80%;
-      }
-    }
-    .background-wrapper {
-      display: flex;
-      width: 100vw;
-      height: 550px;
-      overflow: hidden;
-      position: relative;
-    }
-    .bac-part {
-      flex: 1;
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      position: relative;
-    }
-    .bac-part.left {
-      background-image: url('images/bac1.JPG');
-    }
-    .bac-part.center {
-      background-image: url('images/bac2.JPG');
-    }
-    .bac-part.right {
-      background-image: url('images/bac3.JPG');
-    }
-    .glass-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 15, 15, 0.40);
-      pointer-events: none;
-      z-index: 5;
-    }
-    .wave-mask {
-      position: absolute;
-      bottom: -30px;
-      left: 0;
+    .book-section {
+      height: 100vh;
       width: 100%;
-      height: 250px;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 6;
+      padding: 40px 0;
+      text-align: center;
     }
-    .wave-mask svg {
-      display: block;
+    .book-section > .container {
+      height: 400px;
+      width: 500px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2%;
+      margin-bottom: 30px;
+      perspective: 1200px;
+    }
+    .container > .right {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      transition: 0.7s ease-in-out;
+      transform-style: preserve-3d;
+    }
+    .book-section > .container > .right {
+      right: 0;
+      transform-origin: left;
+      border-radius: 10px 0 0 10px;
+    }
+    .right > figure.front,
+    .right > figure.back {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-size: 200%;
+      background-repeat: no-repeat;
+      backface-visibility: hidden;
+      background-color: white;
+      overflow: hidden;
+    }
+    .right > figure.front {
+      background-position: right;
+      border-radius: 0 10px 10px 0;
+      box-shadow: 2px 2px 15px -2px rgba(0, 0, 0, 0.2);
+    }
+    .right > figure.back {
+      background-position: left;
+      border-radius: 10px 0 0 10px;
+      box-shadow: -2px 2px 15px -2px rgba(0, 0, 0, 0.2);
+      transform: rotateY(180deg);
+    }
+    .flip {
+      transform: rotateY(-180deg);
+    }
+    .flip::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
       width: 100%;
       height: 100%;
+      border-radius: 0 10px 10px 0;
+      background-color: rgba(0, 0, 0, 0.1);
     }
-    .mobile-bg-img {
-      display: none;
-    }
-    @media (max-width: 480px) {
-      .bac-part.left,
-      .bac-part.right {
-        display: none;
-      }
-      .bac-part.center {
-        display: none;
-      }
-      .mobile-bg-img {
-        display: block;
-        width: 100%;
-        height: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-      }
-      .glass-overlay,
-      .wave-mask {
-        z-index: 2;
-      }
-    }
-    .fancy-bmi-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #ff4d4d, #e10600, #b80000, #e10600, #ff4d4d);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .book-section > button {
+      border: 2px solid #ef9f00;
+      background-color: transparent;
+      color: #ef9f00;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      position: relative;
-      overflow: hidden;
-      animation: gradientShift 3s ease infinite alternate;
+      margin: 10px;
+      transition: 0.3s ease-in-out;
     }
-
-    /* Анимација што ги движи боите на омбре-то */
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
+    .book-section > button:focus,
+    .book-section > button:active {
+      outline: none;
     }
-    .elegant-bmi-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #b22222;
-      cursor: pointer;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    .book-section > p {
+      color: rgba(0, 0, 0, 0.7);
+      font-family: calibri;
+      font-size: 24px;
     }
-
-    .elegant-bmi-title:hover {
-      transform: scale(1.07);
-      text-shadow:
-              2px 2px 5px rgba(178, 34, 34, 0.7),
-              0 0 15px rgba(139, 0, 0, 0.5);
+    .book-section > p > a {
+      text-decoration: none;
+      color: #ef9f00;
     }
-    @media (max-width: 480px) {
-      .bmi-intro {
-        font-size: 18px !important;
-        flex-direction: row !important;
-        gap: 8px !important;
-        justify-content: center !important;
-        align-items: center !important;
-        white-space: nowrap;
-      }
-      .elegant-bmi-title {
-        font-size: 1.6rem !important; /* помала големина за мобилни */
-        line-height: 1.2;
-        padding-bottom: 10px;
-      }
-      .bmi-intro img {
-        width: 33px !important;
-        height: 33px !important;
-        filter: invert(30%) brightness(100%) !important;
-        -webkit-filter: invert(30%) brightness(100%) !important;
-        vertical-align: middle;
-      }
-      #bmiResult {
-        font-size: 1rem !important;
-        font-weight: 600;
-        color: #222;
-        margin-top: 25px !important;
-        padding: 0 10px;
-        text-align: center;
-      }
-
-      #bmiAdvice {
-        font-size: 0.9rem !important;
-        font-weight: 400;
-        max-width: 90% !important;
-        margin: 15px auto 0 auto !important;
-        color: #444;
-        line-height: 1.3;
-        padding: 0 10px;
-        text-align: center;
-      }
-
-      #activity {
-        height: 44px !important;
-        padding: 10px 14px !important;
-        font-size: 1rem !important;
-        border-radius: 6px !important;
-        box-sizing: border-box;
-      }
-
-      #weight, #height, #age, #sex {
-        height: 44px !important;
-        padding: 10px 14px !important;
-        font-size: 1rem !important;
-        border-radius: 6px !important;
-        box-sizing: border-box;
-      }
+    .book-section > button:hover {
+      background-color: #ef9f00;
+      color: #fff;
     }
-    .bottom-wave-mask {
-      position: relative;
-      width: 100%;
-      height: 160px;
-      overflow: hidden;
-      z-index: 1;
-      background-color: #f9f9f9;
-
+    .front#cover,
+    .back#back-cover {
+      background-color: #ffcb63;
+      font-family: calibri;
+      text-align: left;
+      padding: 0 30px;
     }
-    .bottom-wave-mask svg {
-      display: block;
-      width: 100%;
-      height: 160px;
+    .front#cover h1 {
+      color: #fff;
+    }
+    .front#cover p {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 14px;
     }
 
   </style>
 </head>
 <body>
-
-<div class="top-bar">
-  <img src="images/email.png" alt="Email Icon" class="icon" />
-  s.martin@live.com &nbsp;&nbsp;
-  <img src="images/location.png" alt="Location Icon" class="icon" />
-  Mateja Mateski 22, Skopje 1000
-</div>
-
-<nav class="navbar">
-  <div class="logo">
-    <img src="images/logo.png" alt="Martin Spirovski Logo" />
-    <span>Martin Spirovski</span>
-  </div>
-
-  <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div class="nav-links" id="nav-links">
-    <a href="#">Почетна</a>
-    <a href="#">За мене</a>
-    <a href="#">Трансформации</a>
-    <a href="#">Понуди</a>
-    <a href="#">Контакт</a>
-  </div>
-</nav>
-
-<div class="background-wrapper">
-  <div class="bac-part left"></div>
-  <div class="bac-part center"></div>
-  <div class="bac-part right"></div>
-  <img src="images/bac2.JPG" alt="Full Background Mobile" class="mobile-bg-img" />
-
-  <div class="glass-overlay"></div>
-
-  <div class="wave-mask" aria-hidden="true">
-    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#f9f9f9" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
-    </svg>
-  </div>
-</div>
-
-<section style="background-color: #f9f9f9; padding: 40px 20px 20px 20px; text-align: center; color: #222;">
-  <h2 class="elegant-bmi-title">
-    ИНДЕКС НА ТЕЛЕСНА МАСА (BMI)
-  </h2>
-  <p class="bmi-intro" style="font-size: 25px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-    Пресметај го твојот BMI сега
-    <img src="images/bmi.png" width="45" height="45" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
-  </p>
-
-
-  <form id="bmiForm" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 1100px; margin: 0 auto;">
-    <input type="number" id="weight" placeholder="Тежина / KG" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
-    <input type="number" id="height" placeholder="Висина / CM" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 160px; background: #fff; color: #222;">
-    <input type="number" id="age" placeholder="Возраст" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 100px; background: #fff; color: #222;">
-
-    <select id="sex" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 140px; background: #fff; color: #222;">
-      <option value="">Пол</option>
-      <option value="male">Машки</option>
-      <option value="female">Женски</option>
-    </select>
-
-    <select id="activity" required style="padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; width: 240px; background: #fff; color: #222;">
-      <option value="">Фактор на активност</option>
-      <option value="1.2">Слабо активен (ретко или никогаш не вежбам)</option>
-      <option value="1.375">Умерено активен (1–3 пати неделно)</option>
-      <option value="1.55">Средно активен (3–5 пати неделно)</option>
-      <option value="1.725">Многу активен (6–7 пати неделно)</option>
-      <option value="1.9">Екстремно активен (2x дневно)</option>
-    </select>
-
-    <button type="submit" style="background: #e10600; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
-      Пресметај
-    </button>
-  </form>
-
-  <div id="errorMessage" style="color: #e10600; font-weight: 600; margin-top: 20px;"></div>
-  <div id="bmiResult" style="margin-top: 40px; font-size: 1.3rem; font-weight: 600; color: #222;"></div>
-  <div id="bmiAdvice" style="margin-top: 18px; font-size: 1rem; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; color: #444;"></div>
-
-  <button id="contactBtn" style="display:none; font-family: 'Roboto', Arial, sans-serif; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
-    КОНТАКТИРАЈ МЕ
-  </button>
-</section>
-
-<section style="position: relative; text-align:center; padding: 20px 2px 0px 20px; background-color: #f9f9f9;">
-  <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Lorem ipsum dolor sit amet.</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
-
-    <div style="max-width: 280px;">
-      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ddd;">
-        <img src="images/circle1.jpeg" alt="Gym Movement" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Посветеност</h3>
-      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+<div class="book-section">
+  <div class="container">
+    <div class="right">
+      <figure class="back" id="back-cover"></figure>
+      <figure class="front" style="
+              background-image: url();
+            "></figure>
+    </div>
+    <div class="right">
+      <figure class="back" style="
+              background-image: url();
+            "></figure>
+      <figure class="front" style="
+              background-image: url();
+            "></figure>
+    </div>
+    <div class="right">
+      <figure class="back" style="
+              background-image: url();
+            "></figure>
+      <figure class="front" style="
+              background-image: url();
+            "></figure>
     </div>
 
-    <div style="max-width: 280px;">
-      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #e10600;">
-        <img src="images/circle2.jpeg" alt="Fitness Practice" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Одговорност</h3>
-      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit. </p>
+    <div class="right">
+      <figure class="back" style="
+              background-image: url();
+            "></figure>
+      <figure class="front" id="cover">
+        <h1>Book Title</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Adipisci, modi.
+        </p>
+      </figure>
     </div>
-
-    <div style="max-width: 280px;">
-      <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ccc;">
-        <img src="images/circle3.jpeg" alt="Achievement" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Тимска соработка</h3>
-      <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </div>
-
   </div>
-
-  <img src="images/dumbbells.png" alt="Icon 1" class="floating-icon icon1" />
-  <img src="images/health.png" alt="Icon 2" class="floating-icon icon2" />
-  <img src="images/nutrition.png" alt="Icon 3" class="floating-icon icon3" />
-  <img src="images/plan.png" alt="Icon 4" class="floating-icon icon4" />
-  <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
-
-</section>
-
-<div class="bottom-wave-mask" aria-hidden="true">
-  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
-  </svg>
+  <button onclick="turnLeft()">Prev</button>
+  <button onclick="turnRight()">Next</button>
+  <br />
 </div>
-
-<footer class="site-footer">
-  <div class="footer-content">
-    &copy; 2025 Martin Spirovski Fitness. All rights reserved.
-  </div>
-</footer>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('nav-links');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-  });
-
-  document.getElementById("bmiForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const weight = parseFloat(document.getElementById("weight").value);
-    const height = parseFloat(document.getElementById("height").value);
-    const age = parseInt(document.getElementById("age").value);
-    const sex = document.getElementById("sex").value;
-    const activity = parseFloat(document.getElementById("activity").value);
-
-    const bmiResult = document.getElementById("bmiResult");
-    const bmiAdvice = document.getElementById("bmiAdvice");
-    const contactBtn = document.getElementById("contactBtn");
-
-    bmiResult.textContent = "";
-    bmiAdvice.textContent = "";
-    contactBtn.style.display = "none";
-
-    const heightM = height / 100;
-    const bmi = weight / (heightM * heightM);
-    const bmiRounded = bmi.toFixed(1);
-
-    let category = "";
-    if (bmi < 18.5) category = "Недоволна тежина";
-    else if (bmi < 25) category = "Нормална тежина";
-    else if (bmi < 30) category = "Прекумерна тежина";
-    else category = "Дебелина";
-
-    let bmr;
-    if (sex === "male") {
-      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  var right = document.getElementsByClassName("right");
+  var si = right.length;
+  var z = 1;
+  turnRight();
+  function turnRight() {
+    if (si >= 1) {
+      si--;
     } else {
-      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      si = right.length - 1;
+      function sttmot(i) {
+        setTimeout(function () {
+          right[i].style.zIndex = "auto";
+        }, 300);
+      }
+      for (var i = 0; i < right.length; i++) {
+        right[i].className = "right";
+        sttmot(i);
+        z = 1;
+      }
     }
-
-    const tdee = Math.round(bmr * activity);
-    document.getElementById("bmiResult").innerHTML = `Твојот BMI е <strong>${bmiRounded}</strong> — <strong>${category}</strong>.<br>Проценета дневна калориска потреба (TDEE): <strong>${tdee} kcal</strong>.`;
-
-    let advice = "";
-    if (bmi < 18.5) {
-      advice = "Совет: Обиди се да зголемиш внес на храна со повеќе хранливи материи. Контактирај ме за повеќе совети како да ја зголемиш телесната тежина, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
-    } else if (bmi < 25) {
-      advice = "Совет: Твојата тежина е во нормални граници. Продолжи со здрав начин на живот и редовна активност. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
-    } else if (bmi < 30) {
-      advice = "Совет: Внимавај на исхраната и зголеми физичка активност за да избегнеш понатамошно зголемување на тежината. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
+    right[si].classList.add("flip");
+    z++;
+    right[si].style.zIndex = z;
+  }
+  function turnLeft() {
+    if (si < right.length) {
+      si++;
     } else {
-      advice = "Совет: Ако сакаш да го намалиш вишокот тежина и да го подобриш своето здравје, контактирај ме за поддршка и персонализирани совети. Заедно можеме да ја постигнеме твојота цел кон поздрав живот.";
+      si = 1;
+      for (var i = right.length - 1; i > 0; i--) {
+        right[i].classList.add("flip");
+        right[i].style.zIndex = right.length + 1 - i;
+      }
     }
+    right[si - 1].className = "right";
+    setTimeout(function () {
+      right[si - 1].style.zIndex = "auto";
+    }, 350);
+  }
 
-    document.getElementById("bmiAdvice").innerHTML = advice;
-
-    if (bmi < 18.5 || bmi >= 25) {
-      contactBtn.style.display = "inline-block";
-    } else {
-      contactBtn.style.display = "none";
-    }
-    document.getElementById("contactBtn").addEventListener("click", () => {
-      window.location.href = "https://example.com/kontakt";
-    });
-
-  });
 </script>
 
 </body>
