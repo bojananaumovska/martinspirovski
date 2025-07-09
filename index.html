@@ -355,6 +355,12 @@
         );
       }
     }
+    @media (max-width: 480px) {
+      .glass-overlay {
+        clip-path: none !important;
+      }
+    }
+
     @keyframes gradientShift {
       0% {
         background-position: 0% 50%;
@@ -976,6 +982,19 @@
         border-radius: 4%;
       }
     }
+    .pre-footer-info {
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .pre-footer-info h2 {
+      color: #8c0404;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+    .pre-footer-info p {
+      font-size: 1rem;
+      color: #afafaf;
+    }
   </style>
 </head>
 <body>
@@ -1172,7 +1191,7 @@
 </div>
 
 <h2 style="font-size: 1.8rem; text-align: center; font-weight: 700; color: #111111; margin-bottom: 0px;font-family: 'Roboto', Arial, sans-serif;">
-  ПРОНАЈДИ ГО ВИСТИНСКИОТ ПЛАН
+  ПРОНАЈДИ ЈА ВИСТИНСКАТА ПОНУДА
   <img src="images/price.png" width="45px" height="45px" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
 </h2>
 
@@ -1281,12 +1300,12 @@
       </figure>
     </div>
   </div>
-  <button onclick="turnLeft()">Prev</button>
-  <button onclick="turnRight()">Next</button>
+  <button onclick="turnLeft()">Предходна</button>
+  <button onclick="turnRight()">Следна</button>
   <br />
 </div>
 
-<section style="background-color: #f9f9f9; margin-top: 50px; padding: 0px 20px 20px 20px; text-align: center; color: #222;">
+<section style="background-color: #f9f9f9; margin-top: 50px; margin-bottom: 20px; padding: 0px 20px 20px 20px; text-align: center; color: #222;">
   <h2 class="elegant-bmi-title">
     ИНДЕКС НА ТЕЛЕСНА МАСА (BMI)
   </h2>
@@ -1316,7 +1335,7 @@
       <option value="1.9">Екстремно активен (2x дневно)</option>
     </select>
 
-    <button type="submit" style="background: #e10600; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
+    <button type="submit" style="background: #8c0404; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
       Пресметај
     </button>
   </form>
@@ -1330,7 +1349,12 @@
   </button>
 </section>
 
-<!-- Add FontAwesome CDN in your <head> -->
+<section class="pre-footer-info">
+  <h2>Мартин Спировски</h2>
+  <p>Бесплатни совети и рецепти, понуди, трансформации,<br>
+    се за спортот и фитнесот на едно место.</p>
+</section>
+
 <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
