@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
-
     <style>
         * {
             margin: 0;
@@ -273,7 +272,7 @@
         }
         .background-wrapper {
             display: flex;
-            width: 100vw;
+            width: 100%;
             height: 550px;
             overflow: hidden;
             position: relative;
@@ -297,13 +296,12 @@
         .glass-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(10, 10, 10, 0.55); /* Умерено темно */
-            backdrop-filter: blur(2px); /* Помалку заматено */
-            -webkit-backdrop-filter: blur(2px); /* Safari поддршка */
+            background: rgba(10, 10, 10, 0.55);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
             pointer-events: none;
             z-index: 5;
         }
-
         .wave-mask {
             position: absolute;
             bottom: -30px;
@@ -355,6 +353,11 @@
                 );
             }
         }
+        @media (max-width: 480px) {
+            .glass-overlay {
+                clip-path: none !important;
+            }
+        }
         @keyframes gradientShift {
             0% {
                 background-position: 0% 50%;
@@ -370,7 +373,6 @@
             cursor: pointer;
             transition: transform 0.3s ease, text-shadow 0.3s ease;
         }
-
         .elegant-bmi-title:hover {
             transform: scale(1.07);
             text-shadow:
@@ -387,7 +389,7 @@
                 white-space: nowrap;
             }
             .elegant-bmi-title {
-                font-size: 1.6rem !important; /* помала големина за мобилни */
+                font-size: 1.6rem !important;
                 line-height: 1.2;
                 padding-bottom: 10px;
             }
@@ -398,26 +400,6 @@
                 -webkit-filter: invert(30%) brightness(100%) !important;
                 vertical-align: middle;
             }
-            #bmiResult {
-                font-size: 1rem !important;
-                font-weight: 600;
-                color: #222;
-                margin-top: 25px !important;
-                padding: 0 10px;
-                text-align: center;
-            }
-
-            #bmiAdvice {
-                font-size: 0.9rem !important;
-                font-weight: 400;
-                max-width: 90% !important;
-                margin: 15px auto 0 auto !important;
-                color: #444;
-                line-height: 1.3;
-                padding: 0 10px;
-                text-align: center;
-            }
-
             #activity {
                 height: 44px !important;
                 padding: 10px 14px !important;
@@ -425,7 +407,6 @@
                 border-radius: 6px !important;
                 box-sizing: border-box;
             }
-
             #weight, #height, #age, #sex {
                 height: 44px !important;
                 padding: 10px 14px !important;
@@ -627,21 +608,6 @@
                 font-size: 0.9rem !important;
             }
         }
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 30px;
-            margin-top: 0;
-            text-align: center;
-        }
-        @media (max-width: 600px) {
-            .section-title {
-                font-size: 1.6rem;
-                margin-bottom: 20px;
-                padding: 0 15px;
-            }
-        }
         .middle-wave-mask {
             width: 100%;
             height: 150px;
@@ -656,7 +622,7 @@
             display: block;
             transform: scaleY(-1);
             transform-origin: center;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
         .social-links {
             display: flex;
@@ -677,7 +643,7 @@
         }
         .hero-content {
             position: absolute;
-            top: 52%;
+            top: 51%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -687,7 +653,7 @@
             max-width: 90%;
         }
         .hero-content h1 {
-            font-size: 2.2rem;
+            font-size: 2.7rem;
             font-weight: 900 !important;
         }
         .hero-content p {
@@ -702,7 +668,7 @@
         }
         .buttonpocetna {
             font-family: 'Roboto', Arial, sans-serif;
-            margin-top: 20px;
+            margin-top: 10px;
             background-color: #e10600;
             color: #fff;
             border: none;
@@ -714,30 +680,62 @@
             box-shadow: 0 3px 8px #b30000cc;
             transition: background-color 0.3s ease;
         }
+        .mobile-break {
+            display: none; /* desktop: нема line break */
+        }
         @media (max-width: 480px) {
             .hero-content {
                 top: 50%;
-                padding: 0.5rem;
+                padding: 1.5rem 1rem;
                 max-width: 95%;
             }
+
             .hero-content h1 {
-                font-size: 1.8rem;
-                margin-bottom: 5px;
+                font-size: 1.7rem !important;
+                font-weight: 800 !important;
+                line-height: 1.3;
+                margin-bottom: 22px;
+                word-break: normal !important;
+                white-space: normal !important;
+                text-align: center;
             }
+
             .hero-content p {
-                font-size: 1rem; /* помал текст */
-                margin-bottom: 5px;
+                font-size: 0.95rem !important;
+                line-height: 1.5;
+                margin-bottom: 10px;
+                color: #f0f0f0;
+                text-align: center;
             }
             #counter {
-                font-size: 3.3rem;
+                display: inline-block;
+                font-size: 3rem !important;
+                font-weight: bold;
+                color: #d42f2f;
+                margin-right: 6px;
             }
+
+            .hero-content .counter-wrapper {
+                font-size: 1rem;
+                color: #f0f0f0;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
             .buttonpocetna {
-                padding: 12px 28px; /* помали димензии на копчето */
-                font-size: 1rem;   /* помал текст */
-                margin-top: 15px;
-                box-shadow: 0 2px 6px #b30000cc; /* помала сенка */
+                padding: 12px 24px !important;
+                font-size: 1rem !important;
+                margin-top: 16px !important;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .mobile-break {
+                display: inline; /* мобилен: line break */
             }
         }
+
+
         .pricing-header h2 {
             font-size: 26px;
             margin-bottom: 10px;
@@ -807,30 +805,24 @@
             font-weight: bold;
             transition: background 0.3s;
         }
-
         .purchase-btn:hover {
             background: #8c0404;
         }
-
-        /* Dark buttons for Standard, Premium, and Extra */
         .plan.standard .purchase-btn,
         .plan.premium .purchase-btn,
         .plan.extra .purchase-btn {
             background: #111;
         }
-
         .plan.standard .purchase-btn:hover,
         .plan.premium .purchase-btn:hover,
         .plan.extra .purchase-btn:hover {
             background: #333;
         }
-
         @media screen and (max-width: 992px) {
             .plans-row {
                 flex-direction: column;
                 align-items: center;
             }
-
             .plan {
                 max-width: 90%;
             }
@@ -842,11 +834,10 @@
             box-sizing: border-box;
         }
         .book-section {
-            height: 100vh;
+            height: auto;
             width: 100%;
             padding: 40px 0;
             text-align: center;
-            margin-top: 60px;
         }
         .book-section > .container {
             height: 65vh;
@@ -862,7 +853,7 @@
         .container > .right {
             position: absolute;
             height: 100%;
-            width: 50%;
+            width: 55%;
             transition: 0.7s ease-in-out;
             transform-style: preserve-3d;
         }
@@ -959,24 +950,81 @@
             .book-section > button {
                 padding: 12px 18px;
                 font-size: 1rem;
+                margin-top: 40px;
+            }
+            .book-section p {
+                font-size: 0.9rem !important;
+                line-height: 1.4;
             }
 
             .book-section .front#cover h1 {
-                font-size: 1.5rem !important;
+                font-size: 1.2rem !important;
+                font-family: 'Roboto', Arial, sans-serif;
             }
-
-
             .right > figure.front,
             .right > figure.back {
                 background-size: cover;
             }
 
             .book-section > .container {
-                height: 60vh;
+                height: 55vh;
+                margin: 0 auto;
                 border-radius: 4%;
             }
         }
+        .pre-footer-info {
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .pre-footer-info h2 {
+            color: #8c0404;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        .pre-footer-info p {
+            font-size: 1rem;
+            color: #afafaf;
+        }
+        figure.front {
+            display: flex;
+            justify-content: center;   /* Хоризонтално центрирање */
+            align-items: center;       /* Вертикално центрирање */
+            text-align: justify;       /* Порамнување на двете страни */
+            padding: 20px;             /* Малку простор внатре */
+            height: 100%;              /* Да ја зафаќа целата висина */
+            box-sizing: border-box;    /* За padding да не ја растегнува големината */
+        }
 
+        .back p {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #222;
+            padding: 0 10px;
+            margin-top: 77px;
+            margin-bottom: 5px;
+        }
+
+        .tip-image {
+            width: 80%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .back {
+            position: relative;
+            padding: 20px 10px 10px; /* Оставаме повеќе простор од горе за сликата */
+            text-align: center;
+            box-sizing: border-box;
+            background: #fff; /* Ако сакаш бела позадина */
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 250px; /* Прилагоди висина ако треба */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
     </style>
 </head>
 <body>
@@ -1020,9 +1068,18 @@
     <div class="glass-overlay"></div>
 
     <div class="hero-content">
-        <h1 style="font-weight: 1000">ТВОЈАТА ЖИВОТНА ТРАНСФОРМАЦИЈА ЗАПОЧНУВА ТУКА!</h1>
-        <p><span id="counter">0</span>+ задоволни корисници</p>
-        <button class="buttonpocetna">ЗАКАЖИ БЕСПЛАТЕН ПРОБЕН ТРЕНИНГ </button>
+        <h1 style="font-weight: 800; margin-bottom: 10px">
+            ТВОЈАТА&nbsp;ЖИВОТНА ТРАНСФОРМАЦИЈА<br class="mobile-break" />ЗАПОЧНУВА&nbsp;ТУКА!
+        </h1>
+<!--        <h1 style="font-weight: 800; margin-bottom: 10px">ТВОЈАТА&nbsp;ЖИВОТНА ТРАНСФОРМАЦИЈА&nbsp;ЗАПОЧНУВА&nbsp;ТУКА!</h1>-->
+        <p style="margin-bottom: 5px; font-size: 18px">Сакаш да изгледаш подобро, да се храниш здраво и да бидеш во одлична форма цела година?<br></p>
+        <p style="font-size: 18px">
+            Пријави се и започни со промена на твојот <span style="color: rgba(232, 23, 23, 0.8); font-weight: 600;">начин на живот денес!</span>
+        </p>
+        <div class="counter-wrapper">
+            <span id="counter">100</span>+ задоволни корисници
+        </div>
+        <button class="buttonpocetna">СОРАБОТКА</button>
     </div>
 
     <div class="wave-mask" aria-hidden="true">
@@ -1032,12 +1089,294 @@
     </div>
 </div>
 
-<section style="background-color: #f9f9f9; padding: 40px 20px 20px 20px; text-align: center; color: #222;">
+<section style="position: relative; text-align:center; padding: 60px 2px 0px 20px; background-color: #f9f9f9;">
+    <h2 style="font-size: 1.8rem; font-weight: 700; color: #111111; margin-bottom: 60px;font-family: 'Roboto', Arial, sans-serif;">
+        Целосна поддршка на секој чекор
+    </h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ddd;">
+                <img src="images/circle1.jpeg" alt="Gym Movement" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem;font-weight: 400;">1. Индивидуални програми прилагодени на тебе и твиоте цели</h3>
+        </div>
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #e10600;">
+                <img src="images/circle2.jpeg" alt="Fitness Practice" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem;font-weight: 400;">2. Детално пратење на напредокот</h3>
+        </div>
+
+        <div style="max-width: 280px;">
+            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ccc;">
+                <img src="images/circle3.jpeg" alt="Achievement" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="margin-top: 20px; font-size: 1.2rem;font-weight: 400;">3. Секојдневна комуникација и подршка</h3>
+        </div>
+    </div>
+    <img src="images/dumbbells.png" alt="Icon 1" class="floating-icon icon1" />
+    <img src="images/health.png" alt="Icon 2" class="floating-icon icon2" />
+    <img src="images/nutrition.png" alt="Icon 3" class="floating-icon icon3" />
+    <img src="images/plan.png" alt="Icon 4" class="floating-icon icon4" />
+    <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
+</section>
+
+<div class="bottom-wave-mask" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+    </svg>
+</div>
+
+<div class="parentclass" style="background-color: #111111">
+    <div class="textclass" style="background-color: #111111; padding-left: 110px;">
+        <h2 style="font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 20px;font-family: 'Roboto', Arial, sans-serif;">
+            Вистински резултати, реални
+            ТРАНСФОРМАЦИИ
+        </h2>
+        <div style="
+        height: 4px;
+        width: 140px;
+        background: linear-gradient(90deg, #ff0000, #ff6666);
+        margin-bottom: 25px;">
+        </div>
+        <p style="color: #ccc; font-size: 1rem; line-height: 1.6;font-family: 'Roboto', Arial, sans-serif;">
+            Секоја трансформација има своја приказна – приказна на одлучност, дисциплина и посветеност. Како личен тренер, моја мисија е да ти помогнам да ја достигнеш твојата најдобра верзија. Без оглед дали целта ти е слабеење, зголемување на мускулна маса или едноставно поздрав начин на живот, секој чекор го поминуваме заедно.
+        </p>
+        <p style="color: #bbb; font-size: 0.95rem; margin-top: 15px;font-family: 'Roboto', Arial, sans-serif;">
+            Инспирирај се од вистински луѓе, вистински резултати. Придружи ни се денес.
+        </p>
+    </div>
+
+    <section class="carousel" aria-label="Gallery">
+        <ol class="carousel__viewport">
+            <li id="carousel__slide1"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="images/1.png" alt="Description of Slide 1" />
+                    <a href="#" class="carousel__prev" onclick="showSlide(4); return false;">←</a>
+                    <a href="#" class="carousel__next" onclick="showSlide(2); return false;">→</a>
+                </div>
+            </li>
+            <li id="carousel__slide2"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
+                <a href="#" class="carousel__prev" onclick="showSlide(1); return false;">←</a>
+                <a href="#" class="carousel__next" onclick="showSlide(3); return false;">→</a>
+            </li>
+            <li id="carousel__slide3"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
+                <a href="#" class="carousel__prev" onclick="showSlide(2); return false;">←</a>
+                <a href="#" class="carousel__next" onclick="showSlide(4); return false;">→</a>
+            </li>
+            <li id="carousel__slide4"
+                tabindex="0"
+                class="carousel__slide">
+                <div class="carousel__snapper"></div>
+                <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
+                <a href="#" class="carousel__prev" onclick="showSlide(3); return false;">←</a>
+                <a href="#" class="carousel__next" onclick="showSlide(1); return false;">→</a>
+            </li>
+        </ol>
+        <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list">
+                <li class="carousel__navigation-item">
+                    <a href="javascript:void(0)" class="carousel__navigation-button" onclick="showSlide(1);">Go to slide 1</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="javascript:void(0)" class="carousel__navigation-button" onclick="showSlide(2);">Go to slide 2</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="javascript:void(0)" class="carousel__navigation-button" onclick="showSlide(3);">Go to slide 3</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="javascript:void(0)" class="carousel__navigation-button" onclick="showSlide(4);">Go to slide 4</a>
+                </li>
+            </ol>
+        </aside>
+    </section>
+</div>
+
+<div class="middle-wave-mask" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
+    </svg>
+</div>
+
+<h2 style="font-size: 1.8rem; text-align: center; font-weight: 700; color: #111111; margin-bottom: 0px;font-family: 'Roboto', Arial, sans-serif;">
+    СОРАБОТКА
+    <img src="images/price.png" width="45px" height="45px" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
+</h2>
+
+<div class="plans-row" style="margin-bottom: 50px">
+
+    <div class="plan basic">
+        <div>
+            <div class="plan-title">Basic Plan</div>
+            <div class="price">$150 <span style="font-size: 16px;">/ Month</span></div>
+            <ul class="features">
+                <li><i class="fa fa-check-circle"></i>20 Тренинзи</li>
+                <li><i class="fa fa-check-circle"></i></li>
+                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
+                <li><i class="fa fa-check-circle"></i>Free parking</li>
+                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
+                <li><i class="fa fa-times-circle" style="color: #aaa;"></i>Nutrition Program</li>
+            </ul>
+        </div>
+        <a href="#" class="purchase-btn">PURCHASE NOW</a>
+    </div>
+
+    <div class="plan standard">
+        <div>
+            <div class="plan-title">Standard Plan</div>
+            <div class="price">$200 <span style="font-size: 16px;">/ Month</span></div>
+            <ul class="features">
+                <li><i class="fa fa-check-circle"></i>20 Trainings</li>
+                <li><i class="fa fa-check-circle"></i>Free shower & lockers</li>
+                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
+                <li><i class="fa fa-check-circle"></i>Free parking</li>
+                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
+                <li><i class="fa fa-times-circle" style="color: #aaa;"></i>Nutrition Program</li>
+            </ul>
+        </div>
+        <a href="#" class="purchase-btn">PURCHASE NOW</a>
+    </div>
+
+    <div class="plan premium">
+        <div>
+            <div class="plan-title">Premium Plan</div>
+            <div class="price">$250 <span style="font-size: 16px;">/ Month</span></div>
+            <ul class="features">
+                <li><i class="fa fa-check-circle"></i>20 Trainings</li>
+                <li><i class="fa fa-check-circle"></i>Free shower & lockers</li>
+                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
+                <li><i class="fa fa-check-circle"></i>Free parking</li>
+                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
+                <li><i class="fa fa-check-circle"></i>Nutrition Program</li>
+            </ul>
+        </div>
+        <a href="#" class="purchase-btn">PURCHASE NOW</a>
+    </div>
+
+    <div class="plan extra">
+        <div>
+            <div class="plan-title">Extra Plan</div>
+            <div class="price">$300 <span style="font-size: 16px;">/ Month</span></div>
+            <ul class="features">
+                <li><i class="fa fa-check-circle"></i>30 Trainings</li>
+                <li><i class="fa fa-check-circle"></i>Private Coach</li>
+                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
+                <li><i class="fa fa-check-circle"></i>Free parking</li>
+                <li><i class="fa fa-check-circle"></i>7 Days Per Week</li>
+                <li><i class="fa fa-check-circle"></i>Full Nutrition Plan</li>
+            </ul>
+        </div>
+        <a href="#" class="purchase-btn">PURCHASE NOW</a>
+    </div>
+
+</div>
+<div class="book-section">
+    <div class="container">
+        <div class="right">
+            <figure class="back" id="back-cover">
+            </figure>
+            <figure class="front">
+                <p>Остани и уживај во процесот, не ги бркај резултатите 🎯.
+                    Очекувањето на некој резултат или бркање на бројки 📉 и вага
+                    може само да ти направи фрустрација.
+                    Ова го правиш за да се чувствуваш подобро 😊 и поздраво,
+                    резултатите во огледало 🪞 сами ќе си дојдат ✅.</p>
+            </figure>
+        </div>
+
+        <div class="right">
+            <figure class="back">
+                <p>5. Континуитетот е клучот.</p>
+                <img src="images/tip5.PNG" alt="Слика за совет 5" class="tip-image" />
+            </figure>
+            <figure class="front">
+                <p>Јади редовно 🍽️, во приближно исто време 🕒 во текот на денот.
+                    Распореди ги оброците 🥗🍳 како тебе намногу ти одговара.
+                    Обиди се да јадеш приближно исти оброци
+                    за да пратиш како телото ти реагира на истите.</p>
+            </figure>
+        </div>
+
+        <div class="right">
+            <figure class="back">
+                <p>4. Вооброчи се.</p>
+                <img src="images/tip4.PNG" alt="Слика за совет 4" class="tip-image" />
+            </figure>
+            <figure class="front">
+                <p>Труди се да ја подобруваш техниката на сите вежби
+                    и да ја контролираш тежината при секое повторување.
+                    Само така ќе направиш максимална 🧠💪 “mind-muscle” конекција
+                    и ќе се заштитиш од понатамошни повреди.</p>
+            </figure>
+        </div>
+
+        <div class="right">
+            <figure class="back">
+                <p>3. Изведувај ги вежбите со правилна техника.</p>
+                <img src="images/tip3.PNG" alt="Слика за совет 3" class="tip-image" />
+            </figure>
+            <figure class="front">
+                <p>Нема потреба да вежбаш секој ден ️, 3-4 💪 тежински тренинзи неделно
+                    и повеќе од доволно ја завршуваат работата ✅
+                    кога се работи за природни вежбачи.</p>
+            </figure>
+        </div>
+
+        <div class="right">
+            <figure class="back">
+                <p>2. Дади му време на телото да се опорави</p>
+                <img src="images/tip2.PNG" alt="Слика за совет 2" class="tip-image" />
+            </figure>
+            <figure class="front">
+                <p>💪Тренинг планот ќе ти помогне да не изоставуваш некои мускулни групи
+                    и да го пратиш напредокот 📈 на сите вежби од тренинг на тренинг.
+                    📅 Води се по истиот план 6-10 недели,
+                    па потоа направи некои измени.</p>
+            </figure>
+        </div>
+
+        <div class="right">
+            <figure class="back">
+                <p>1. Состави тренинг план и стриктно придржувај се до него.</p>
+                <img src="images/tip1.PNG" alt="Слика за совет 1" class="tip-image" />
+            </figure>
+            <figure class="front" id="cover">
+                <h1 style="font-size: 1.8rem;">БЕСПЛАТНИ СОВЕТИ</h1>
+            </figure>
+        </div>
+
+    </div>
+    <button onclick="turnLeft()">Предходна</button>
+    <button onclick="turnRight()">Следна</button>
+    <br />
+</div>
+
+<div style="text-align: center;">
+    <a href="pdf/soveti.pdf" download>
+        <button style="background: #8c0404;  margin-bottom:30px; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
+            БЕСПЛАТЕН ТРЕНИНГ ПРИРАЧНИК
+        </button>
+    </a>
+</div>
+
+<section style="background-color: #f9f9f9; margin-top: 80px; margin-bottom: 20px; padding: 0px 20px 20px 20px; text-align: center; color: #222;">
     <h2 class="elegant-bmi-title">
-        ИНДЕКС НА ТЕЛЕСНА МАСА (BMI)
+        Идеален калориски внес за одржување (TDEE)
     </h2>
     <p class="bmi-intro" style="font-size: 25px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-        Пресметај го твојот BMI сега
+        Пресметај го твојот TDEE сега
         <img src="images/bmi.png" width="45" height="45" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
     </p>
 
@@ -1062,282 +1401,30 @@
             <option value="1.9">Екстремно активен (2x дневно)</option>
         </select>
 
-        <button type="submit" style="background: #e10600; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
+        <button type="submit" style="background: #8c0404; font-family: 'Roboto', Arial, sans-serif; border: none; padding: 12px 25px; border-radius: 6px; color: #fff; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease;">
             Пресметај
         </button>
     </form>
 
     <div id="errorMessage" style="color: #e10600; font-weight: 600; margin-top: 20px;"></div>
-    <div id="bmiResult" style="margin-top: 40px; font-size: 1.3rem; font-weight: 600; color: #222;"></div>
-    <div id="bmiAdvice" style="margin-top: 18px; font-size: 1rem; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; color: #444;"></div>
+    <div id="TdeeAdvice" style="margin-top: 25px; font-size: 1.4rem; font-weight: 400; max-width: 700px; margin-left: auto; margin-right: auto; color: #444;"></div>
 
     <button id="contactBtn" style="display:none; font-family: 'Roboto', Arial, sans-serif; margin-top: 30px; background-color: #e10600; color: #fff; border: none; padding: 14px 35px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: 600; box-shadow: 0 3px 8px #b30000cc; transition: background-color 0.3s ease;">
         КОНТАКТИРАЈ МЕ
     </button>
 </section>
 
-<section style="position: relative; text-align:center; padding: 20px 2px 0px 20px; background-color: #f9f9f9;">
-    <h2 style="font-size: 1.8rem; font-weight: 700; color: #111111; margin-bottom: 60px;font-family: 'Roboto', Arial, sans-serif;">
-        Lorem ipsum dolor sit amet
-    </h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
-
-        <div style="max-width: 280px;">
-            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ddd;">
-                <img src="images/circle1.jpeg" alt="Gym Movement" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Посветеност</h3>
-            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-        </div>
-
-        <div style="max-width: 280px;">
-            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #e10600;">
-                <img src="images/circle2.jpeg" alt="Fitness Practice" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Одговорност</h3>
-            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet consectetur adipiscing elit. </p>
-        </div>
-
-        <div style="max-width: 280px;">
-            <div style="position: relative; width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 6px solid #ccc;">
-                <img src="images/circle3.jpeg" alt="Achievement" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h3 style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">Тимска соработка</h3>
-            <p style="font-size: 0.9rem; color: #555;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-
-    </div>
-
-    <img src="images/dumbbells.png" alt="Icon 1" class="floating-icon icon1" />
-    <img src="images/health.png" alt="Icon 2" class="floating-icon icon2" />
-    <img src="images/nutrition.png" alt="Icon 3" class="floating-icon icon3" />
-    <img src="images/plan.png" alt="Icon 4" class="floating-icon icon4" />
-    <img src="images/people.png" alt="Icon 5" class="floating-icon icon5" />
-
+<section class="pre-footer-info">
+    <h2>Мартин Спировски</h2>
+    <p>Бесплатни совети и рецепти, понуди, трансформации,<br>
+        се за спортот и фитнесот на едно место.</p>
 </section>
 
-<div class="bottom-wave-mask" aria-hidden="true">
-    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
-    </svg>
-</div>
-
-
-<div class="parentclass" style="background-color: #111111">
-    <div class="textclass" style="background-color: #111111; padding-left: 110px;">
-        <h2 style="font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 20px;font-family: 'Roboto', Arial, sans-serif;">
-            Вистински резултати, реални
-            ТРАНСФОРМАЦИИ
-        </h2>
-        <div style="
-        height: 4px;
-        width: 140px;
-        background: linear-gradient(90deg, #ff0000, #ff6666);
-        margin-bottom: 25px;">
-        </div>
-        <p style="color: #ccc; font-size: 1rem; line-height: 1.6;font-family: 'Roboto', Arial, sans-serif;">
-            Секоја трансформација има своја приказна – приказна на одлучност, дисциплина и посветеност. Како личен тренер, моја мисија е да ти помогнам да ја достигнеш твојата најдобра верзија. Без оглед дали целта ти е слабеење, зголемување на мускулна маса или едноставно поздрав начин на живот – секој чекор го поминуваме заедно.
-        </p>
-        <p style="color: #bbb; font-size: 0.95rem; margin-top: 15px;font-family: 'Roboto', Arial, sans-serif;">
-            Инспирирај се од вистински луѓе, вистински резултати. Придружи ни се денес.
-        </p>
-    </div>
-
-    <section class="carousel" aria-label="Gallery">
-        <ol class="carousel__viewport">
-            <li id="carousel__slide1"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper">
-                    <img src="images/1.png" alt="Description of Slide 1" />
-                    <a href="#carousel__slide4"
-                       class="carousel__prev">←</a>
-                    <a href="#carousel__slide2"
-                       class="carousel__next">→</a>
-                </div>
-            </li>
-            <li id="carousel__slide2"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/3.png" alt="Description of Slide 2" style="width: 100%; height: auto;">
-                <a href="#carousel__slide1"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide3"
-                   class="carousel__next">→</a>
-            </li>
-            <li id="carousel__slide3"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/2.png" alt="Description of Slide 3" style="width: 100%; height: auto;">
-                <a href="#carousel__slide2"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide4"
-                   class="carousel__next">→</a>
-            </li>
-            <li id="carousel__slide4"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <img src="images/4.png" alt="Description of Slide 4" style="width: 100%; height: auto;">
-                <a href="#carousel__slide3"
-                   class="carousel__prev">←</a>
-                <a href="#carousel__slide1"
-                   class="carousel__next">→</a>
-            </li>
-        </ol>
-        <aside class="carousel__navigation">
-            <ol class="carousel__navigation-list">
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide1"
-                       class="carousel__navigation-button">Go to slide 1</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide2"
-                       class="carousel__navigation-button">Go to slide 2</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide3"
-                       class="carousel__navigation-button">Go to slide 3</a>
-                </li>
-                <li class="carousel__navigation-item">
-                    <a href="#carousel__slide4"
-                       class="carousel__navigation-button">Go to slide 4</a>
-                </li>
-            </ol>
-        </aside>
-    </section>
-</div>
-
-<div class="middle-wave-mask" aria-hidden="true">
-    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#111" d="M0,150 C480,190 960,110 1440,170 L1440,200 L0,200 Z"></path>
-    </svg>
-</div>
-
-<h2 style="font-size: 1.8rem; text-align: center; font-weight: 700; color: #111111; margin-bottom: 20px;font-family: 'Roboto', Arial, sans-serif;">
-    ПРОНАЈДИ ГО ВИСТИНСКИОТ ПЛАН
-    <img src="images/price.png" width="45px" height="45px" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
-</h2>
-
-<div class="plans-row">
-
-    <div class="plan basic">
-        <div>
-            <div class="plan-title">Basic Plan</div>
-            <div class="price">$150 <span style="font-size: 16px;">/ Month</span></div>
-            <ul class="features">
-                <li><i class="fa fa-check-circle"></i>20 Тренинзи</li>
-                <li><i class="fa fa-check-circle"></i></li>
-                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
-                <li><i class="fa fa-check-circle"></i>Free parking</li>
-                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
-                <li><i class="fa fa-times-circle" style="color: #aaa;"></i>Nutrition Program</li>
-            </ul>
-        </div>
-        <a href="#" class="purchase-btn">PURCHASE NOW</a>
-    </div>
-
-    <!-- Standard Plan -->
-    <div class="plan standard">
-        <div>
-            <div class="plan-title">Standard Plan</div>
-            <div class="price">$200 <span style="font-size: 16px;">/ Month</span></div>
-            <ul class="features">
-                <li><i class="fa fa-check-circle"></i>20 Trainings</li>
-                <li><i class="fa fa-check-circle"></i>Free shower & lockers</li>
-                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
-                <li><i class="fa fa-check-circle"></i>Free parking</li>
-                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
-                <li><i class="fa fa-times-circle" style="color: #aaa;"></i>Nutrition Program</li>
-            </ul>
-        </div>
-        <a href="#" class="purchase-btn">PURCHASE NOW</a>
-    </div>
-
-    <!-- Premium Plan -->
-    <div class="plan premium">
-        <div>
-            <div class="plan-title">Premium Plan</div>
-            <div class="price">$250 <span style="font-size: 16px;">/ Month</span></div>
-            <ul class="features">
-                <li><i class="fa fa-check-circle"></i>20 Trainings</li>
-                <li><i class="fa fa-check-circle"></i>Free shower & lockers</li>
-                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
-                <li><i class="fa fa-check-circle"></i>Free parking</li>
-                <li><i class="fa fa-check-circle"></i>5 Days Per Week</li>
-                <li><i class="fa fa-check-circle"></i>Nutrition Program</li>
-            </ul>
-        </div>
-        <a href="#" class="purchase-btn">PURCHASE NOW</a>
-    </div>
-
-    <!-- Extra Plan -->
-    <div class="plan extra">
-        <div>
-            <div class="plan-title">Extra Plan</div>
-            <div class="price">$300 <span style="font-size: 16px;">/ Month</span></div>
-            <ul class="features">
-                <li><i class="fa fa-check-circle"></i>30 Trainings</li>
-                <li><i class="fa fa-check-circle"></i>Private Coach</li>
-                <li><i class="fa fa-check-circle"></i>Reliable & Experienced Team</li>
-                <li><i class="fa fa-check-circle"></i>Free parking</li>
-                <li><i class="fa fa-check-circle"></i>7 Days Per Week</li>
-                <li><i class="fa fa-check-circle"></i>Full Nutrition Plan</li>
-            </ul>
-        </div>
-        <a href="#" class="purchase-btn">PURCHASE NOW</a>
-    </div>
-
-</div>
-
-<div class="book-section">
-    <div class="container">
-        <div class="right">
-            <figure class="back" id="back-cover"></figure>
-            <figure class="front" style="
-              background-image: url();
-            "></figure>
-        </div>
-        <div class="right">
-            <figure class="back" style="
-              background-image: url();
-            "></figure>
-            <figure class="front" style="
-              background-image: url();
-            "></figure>
-        </div>
-        <div class="right">
-            <figure class="back" style="
-              background-image: url();
-            "></figure>
-            <figure class="front" style="
-              background-image: url();
-            "></figure>
-        </div>
-
-        <div class="right">
-            <figure class="back" style="
-              background-image: url();
-            "></figure>
-            <figure class="front" id="cover">
-                <h1 style="font-size: 1.8rem; margin-top: 20px">БЕСПЛАТНИ РЕЦЕПТИ И СОВЕТИ</h1>
-            </figure>
-        </div>
-    </div>
-    <button onclick="turnLeft()">Prev</button>
-    <button onclick="turnRight()">Next</button>
-    <br />
-</div>
-
-<!-- Add FontAwesome CDN in your <head> -->
 <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
-<!-- Social Links Div -->
 <div class="social-links">
     <a href="https://www.facebook.com/martin.spirovski.124158" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
         <i class="fab fa-facebook-f"></i>
@@ -1359,6 +1446,18 @@
 
 
 <script>
+    document.querySelectorAll('.carousel__navigation-button').forEach((btn, index) => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            showSlide(index + 1);
+        });
+    });
+    function showSlide(index) {
+        const slide = document.getElementById('carousel__slide' + index);
+        if (slide) {
+            slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+    }
     var right = document.getElementsByClassName("right");
     var si = right.length;
     var z = 1;
@@ -1401,11 +1500,11 @@
 
     const counter = document.getElementById("counter");
     const end = 100;
-    const duration = 2000; // 1000 ms = 1 секунда
+    const duration = 2000;
     let startTime = null;
 
     function animate(now) {
-        if (!startTime) startTime = now; // земи го почетното време при првото повикување
+        if (!startTime) startTime = now;
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const value = Math.floor(progress * end);
@@ -1418,8 +1517,6 @@
 
     requestAnimationFrame(animate);
 
-
-    // Trigger the counter when the page is loaded
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
 
@@ -1427,7 +1524,6 @@
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
     });
-
     document.getElementById("bmiForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
@@ -1437,23 +1533,35 @@
         const sex = document.getElementById("sex").value;
         const activity = parseFloat(document.getElementById("activity").value);
 
-        const bmiResult = document.getElementById("bmiResult");
-        const bmiAdvice = document.getElementById("bmiAdvice");
+        const TdeeAdvice = document.getElementById("TdeeAdvice");
         const contactBtn = document.getElementById("contactBtn");
+        const errorMessage = document.getElementById("errorMessage");
 
-        bmiResult.textContent = "";
-        bmiAdvice.textContent = "";
+        errorMessage.textContent = "";
+        TdeeAdvice.textContent = "";
         contactBtn.style.display = "none";
 
-        const heightM = height / 100;
-        const bmi = weight / (heightM * heightM);
-        const bmiRounded = bmi.toFixed(1);
-
-        let category = "";
-        if (bmi < 18.5) category = "Недоволна тежина";
-        else if (bmi < 25) category = "Нормална тежина";
-        else if (bmi < 30) category = "Прекумерна тежина";
-        else category = "Дебелина";
+        // Основна валидација
+        if (isNaN(weight) || weight < 30 || weight > 300) {
+            errorMessage.textContent = "Внеси валидна тежина (30-300 кг).";
+            return;
+        }
+        if (isNaN(height) || height < 100 || height > 250) {
+            errorMessage.textContent = "Внеси валидна висина (100-250 см).";
+            return;
+        }
+        if (isNaN(age) || age < 10 || age > 120) {
+            errorMessage.textContent = "Внеси валидна возраст (10-120 години).";
+            return;
+        }
+        if (sex !== "male" && sex !== "female") {
+            errorMessage.textContent = "Избери пол.";
+            return;
+        }
+        if (isNaN(activity) || activity <= 0) {
+            errorMessage.textContent = "Избери фактор на активност.";
+            return;
+        }
 
         let bmr;
         if (sex === "male") {
@@ -1463,27 +1571,36 @@
         }
 
         const tdee = Math.round(bmr * activity);
-        document.getElementById("bmiResult").innerHTML = `Твојот BMI е <strong>${bmiRounded}</strong> — <strong>${category}</strong>.<br>Проценета дневна калориска потреба (TDEE): <strong>${tdee} kcal</strong>.`;
 
-        let advice = "";
-        if (bmi < 18.5) {
-            advice = "Совет: Обиди се да зголемиш внес на храна со повеќе хранливи материи. Контактирај ме за повеќе совети како да ја зголемиш телесната тежина, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
-        } else if (bmi < 25) {
-            advice = "Совет: Твојата тежина е во нормални граници. Продолжи со здрав начин на живот и редовна активност. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
-        } else if (bmi < 30) {
-            advice = "Совет: Внимавај на исхраната и зголеми физичка активност за да избегнеш понатамошно зголемување на тежината. Контактирај ме за повеќе совети како да го подобриш изгледот, да ја зајакнеш мускулатурата и да водиш поздрав живот.";
-        } else {
-            advice = "Совет: Ако сакаш да го намалиш вишокот тежина и да го подобриш своето здравје, контактирај ме за поддршка и персонализирани совети. Заедно можеме да ја постигнеме твојота цел кон поздрав живот.";
-        }
+        TdeeAdvice.innerHTML = `
+    <p><strong>Проценета дневна калориска потреба (TDEE): ${tdee} kcal</strong></p>
+    <p style="margin-top: 12px; font-size: 16px">
+        <strong>Ако сакаш да ослабеш</strong>, намали го дневниот калориски внес за приближно <strong>300–400 kcal</strong>,
+        што значи внес од околу <strong>${tdee - 400} – ${tdee - 300} kcal</strong> дневно.<br><br>
+        <strong>Ако целиш кон зголемување на мускулна маса</strong>, зголеми го внесот за приближно <strong>300–400 kcal</strong>,
+        што значи внес од околу <strong>${tdee + 300} – ${tdee + 400} kcal</strong> дневно.
+    </p>
+`;
 
-        document.getElementById("bmiAdvice").innerHTML = advice;
+
         contactBtn.style.display = "inline-block";
-
-        document.getElementById("contactBtn").addEventListener("click", () => {
-            window.location.href = "https://example.com/kontakt";
-        });
-
     });
+
+    document.getElementById("contactBtn").addEventListener("click", () => {
+        window.location.href = "https://example.com/kontakt";
+    });
+    // pages.forEach(page => {
+    //     page.addEventListener('click', () => {
+    //         if (isMobile) {
+    //             page.classList.toggle('flip');
+    //             // При flip покажи back, при повторен клик front
+    //             const isFlipped = page.classList.contains('flip');
+    //             page.querySelector('figure.front').style.display = isFlipped ? 'none' : 'block';
+    //             page.querySelector('figure.back').style.display = isFlipped ? 'block' : 'none';
+    //         }
+    //     });
+    // });
+
 </script>
 
 </body>
