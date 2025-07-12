@@ -683,6 +683,14 @@
     .mobile-break {
       display: none; /* desktop: нема line break */
     }
+    .circles h2{
+      font-size: 1.8rem;
+    }
+    @media (max-width: 480px) {
+      .circles h2{
+        font-size: 1.4rem;
+      }
+    }
     @media (max-width: 480px) {
       .hero-content {
         top: 50%;
@@ -691,10 +699,10 @@
       }
 
       .hero-content h1 {
-        font-size: 1.7rem !important;
+        font-size: 1.9rem !important;
         font-weight: 800 !important;
         line-height: 1.3;
-        margin-bottom: 22px;
+        margin-bottom: 25px;
         word-break: normal !important;
         white-space: normal !important;
         text-align: center;
@@ -985,6 +993,11 @@
       font-size: 1rem;
       color: #afafaf;
     }
+    @media (max-width: 480px) {
+      .pre-footer-info h2 {
+        font-size: 1.4rem; /* помала големина за мобилен */
+      }
+    }
     figure.front {
       display: flex;
       justify-content: center;   /* Хоризонтално центрирање */
@@ -1024,6 +1037,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+    }
+    .collab{
+      font-size: 1.8rem;
+    }
+    @media (max-width: 480px) {
+      .collab {
+        font-size: 1.4rem !important;
+      }
     }
   </style>
 </head>
@@ -1089,8 +1110,8 @@
   </div>
 </div>
 
-<section style="position: relative; text-align:center; padding: 60px 2px 0px 20px; background-color: #f9f9f9;">
-  <h2 style="font-size: 1.8rem; font-weight: 700; color: #111111; margin-bottom: 60px;font-family: 'Roboto', Arial, sans-serif;">
+<section class="circles" style="position: relative; text-align:center; padding: 60px 2px 0px 20px; background-color: #f9f9f9;">
+  <h2 style=" font-weight: 700; color: #111111; margin-bottom: 60px;font-family: 'Roboto', Arial, sans-serif;">
     Целосна поддршка на секој чекор
   </h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
@@ -1210,7 +1231,7 @@
   </svg>
 </div>
 
-<h2 style="font-size: 1.8rem; text-align: center; font-weight: 700; color: #111111; margin-bottom: 0px;font-family: 'Roboto', Arial, sans-serif;">
+<h2 class="collab" style=" text-align: center; font-weight: 700; color: #111111; margin-bottom: 0px;font-family: 'Roboto', Arial, sans-serif;">
   СОРАБОТКА
   <img src="images/price.png" width="45px" height="45px" style="filter: invert(45%) brightness(110%); -webkit-filter: invert(32%) brightness(120%); vertical-align: middle;" alt="BMI Icon" />
 </h2>
